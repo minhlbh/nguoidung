@@ -99,7 +99,7 @@ a:hover {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: #ccc;
+  /* background: #ccc; */
   margin:8px 4px;
   overflow: hidden;
 }
