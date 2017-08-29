@@ -194,8 +194,6 @@ input.form-control:focus {
   height: 16px;
 }
 
-
-
 @media only screen and (max-width: 768px) {
   .top-bar {
       overflow: visible;
