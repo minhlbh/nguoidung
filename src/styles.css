@@ -1,1 +1,221 @@
 /* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: 'Segoe UI Web';
+  src: url('https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-vietnamese/segoeui-light.woff2') format('woff2'), url('https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-vietnamese/segoeui-light.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segoe UI Web';
+  src: url('https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-vietnamese/segoeui-semilight.woff2') format('woff2'), url('https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-vietnamese/segoeui-semilight.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segoe UI Web';
+  src: url('https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-vietnamese/segoeui-regular.woff2') format('woff2'), url('https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-vietnamese/segoeui-regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segoe UI Web';
+  src: url('https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-vietnamese/segoeui-semibold.woff2') format('woff2'), url('https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-vietnamese/segoeui-semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Segoe UI Web', "Segoe UI";
+  font-size: 14px;
+  padding-top: 3rem;
+  background-color: #F8F8F8;
+}
+a:hover {
+  text-decoration: none;
+}
+
+.top-bar {
+  background: rgb(0, 119, 154);
+  padding: 0;
+  height: 45px;
+  overflow: hidden;
+  margin: 0;
+}
+
+.logo {
+  padding: 5px 15px;
+  border-right: solid 1px rgba(255, 255, 255, 0.3);
+}
+
+.logo:hover {
+  background: rgba(33, 136, 167, 0.90)
+}
+
+.logo span {
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.logo img {
+  width: 36px;
+  height: 36px;
+}
+
+.top-bar-right {
+  justify-content: flex-end;
+}
+
+.top-bar-right ul li {
+  border-right: solid 1px rgba(255, 255, 255, 0.3);
+}
+
+.top-bar-right ul li a {
+  min-width: 40px;
+  text-align: center;
+  height: 45px;
+}
+
+.top-bar-right ul li a:hover {
+  background: rgba(33, 136, 167, 0.90);
+}
+
+.top-bar-right ul li a i {
+  color: #fff;
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.account {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 5px;
+}
+
+.account .avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ccc;
+  margin:8px 4px;
+  overflow: hidden;
+}
+
+.account .avatar img {
+  widows: 100%;
+  height: 100%;
+}
+
+.account .name {
+  font-size: 13px;
+  color: #fff;
+  padding: 12px 5px;
+}
+
+
+input.form-control {
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+input.search.form-control {
+
+  font-size: 14px;
+}
+
+input.form-control:focus {
+  border-color: #00749A;
+}
+
+
+/*Placeholder Colors*/
+
+.search.form-control::-webkit-input-placeholder {
+  color: #939393;
+  font-size: 14px;
+}
+
+.search.form-control:-moz-placeholder {
+  /* Firefox 18- */
+  color: #939393;
+  font-size: 14px;
+}
+
+.search.form-control::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #939393;
+  font-size: 14px;
+}
+
+.search.form-control:-ms-input-placeholder {
+  color: #939393;
+  font-size: 14px;
+}
+
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+/* .bg-xanh {
+  background-color: #00749A;
+} */
+
+.line_menu {
+  float: right;
+  margin-top: -6px;
+}
+
+.line_menu ul {
+  list-style-type: none;
+}
+
+.line_menu li {
+  float: left;
+}
+
+.line_menu li a {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  color: #949494;
+}
+
+.line_menu li a:hover {
+  color: #00749A;
+}
+
+
+.svg-icon{
+  width: 16px;
+  height: 16px;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  .top-bar {
+      overflow: visible;
+      flex-wrap: nowrap;
+  }
+
+  .collapse {
+      display: block;
+      z-index: 1000;
+  }
+
+  .collapse .navbar-nav {
+      flex-direction: row;
+      justify-content: flex-end;
+  }
+
+  .name {
+      display: none;
+  }
+  .top-bar .container {
+      flex-wrap: nowrap !important;
+  }
+}

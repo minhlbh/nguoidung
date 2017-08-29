@@ -1,20 +1,97 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTAgMjUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojREQwMDMxO30NCgkuc3Qxe2ZpbGw6I0MzMDAyRjt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTI1LDMwIDEyNSwzMCAxMjUsMzAgMzEuOSw2My4yIDQ2LjEsMTg2LjMgMTI1LDIzMCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAJIi8+DQoJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIxMjUsMzAgMTI1LDUyLjIgMTI1LDUyLjEgMTI1LDE1My40IDEyNSwxNTMuNCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAxMjUsMzAgCSIvPg0KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjUsNTIuMUw2Ni44LDE4Mi42aDBoMjEuN2gwbDExLjctMjkuMmg0OS40bDExLjcsMjkuMmgwaDIxLjdoMEwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMQ0KCQlMMTI1LDUyLjF6IE0xNDIsMTM1LjRIMTA4bDE3LTQwLjlMMTQyLDEzNS40eiIvPg0KPC9nPg0KPC9zdmc+DQo=">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="http://angularjs.blogspot.com/">Angular blog</a></h2>
-  </li>
-</ul>
+<nav class="navbar navbar-expand-md navbar-dark top-bar fixed-top ">
+  <div class="container">
+    <a class="navbar-brand logo" href="#">
+        <img src="assets/icons/logo.png">
+        <span>Trưởng khoa</span>
+    </a>
+    <!-- <button class="navbar-toggler bt-toggle" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </button> -->
+    <div class="collapse navbar-collapse top-bar-right menu-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ">
+        <li class="nav-item">
+          <a class="account" href="#">
+            <div class="avatar">
+              <img src="assets/images/avt.jpg">
+            </div>
+            <span class="name">
+                        Đinh Anh Tuấn
+                    </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><img class="svg-icon" src="assets/icons/notifi.svg"></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><img class="svg-icon" src="assets/icons/apps.svg"></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
+<div class="container">
+  <div class="row justify-content-end">
+    <div class="line_menu">
+      <ul>
+        <li>
+          <a href="#">Từ điển bệnh</a>
+        </li>
+        <li>
+          <a href="#">Thuốc</a>
+        </li>
+        <li>
+          <a href="#">Cơ ở y tế</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="search_container col-md-8 col-sm-12">
+      <div class="search_field">
+        <img class="icon" src="assets/icons/search-icon.svg">
+        <input class="search form-control form-control-lg" placeholder="Thêm bệnh hoặc triệu chứng" />
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-md-center content">
+    <div class="col-md-3 col-sm-4 col-block  d-none d-sm-block">
+      <div class="col-header">
+        Danh sách triệu chứng
+      </div>
+      <div class="col-content">
+
+
+        <div class="empty">
+          Tìm kiếm triệu chứng bằng cách gõ từ khoá vào ô tìm bệnh hoặc triệu chứng
+        </div>
+      </div>
+      <img class="next_arr hidden-sm-down" src="assets/icons/next.svg" alt="">
+
+    </div>
+
+    <div class="col-md-3 col-sm-4 col-block  d-none d-sm-block">
+      <div class="col-header">
+        Triệu chứng đã chọn
+      </div>
+      <div class="col-content">
+        <div class="empty">
+          Chọn đúng triệu chứng mắc phải
+        </div>
+      </div>
+      <img class="next_arr" src="assets/icons/next.svg" alt="">
+    </div>
+    <div class="col-md-3 col-sm-4 col-block  d-none d-sm-block">
+      <div class="col-header">
+        Các bệnh liên quan
+      </div>
+      <div class="col-content">
+        <div class="empty">
+          Các bệnh liên quan sẽ hiện ra theo triệu chứng đã chọn
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
