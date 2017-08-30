@@ -75,9 +75,9 @@
     padding-left: 0;
     padding-top: 10px;
 }
-.col-content ul li{
+/* .col-content ul li{ */
     /* max-width: 90%; */
-}
+/* } */
 
 @media only screen and (max-width: 768px) {
     .search_container {
