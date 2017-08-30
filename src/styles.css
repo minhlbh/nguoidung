@@ -37,6 +37,13 @@ body {
 a:hover {
   text-decoration: none;
 }
+.custom-checkbox .custom-control-indicator{
+    border-radius: 2px;
+}
+input[type=checkbox]:focus{outline: none;}
+.custom-control-input:checked~.custom-control-indicator{
+    background-color: #00749A;
+}
 
 .top-bar {
   background: rgb(0, 119, 154);

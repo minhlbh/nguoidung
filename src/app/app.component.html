@@ -1,98 +1,47 @@
 <nav class="navbar navbar-expand-md navbar-dark top-bar fixed-top ">
-  <div class="container">
-    <a class="navbar-brand logo" href="#">
-        <img src="assets/icons/logo.png">
-        <span>Trưởng khoa</span>
-    </a>
-    <!-- <button class="navbar-toggler bt-toggle" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fa fa-bars" aria-hidden="true"></i>
-    </button> -->
-    <div class="collapse navbar-collapse top-bar-right menu-collapse" id="navbarCollapse">
-      <ul class="navbar-nav ">
-        <li class="nav-item">
-          <a class="account" href="#">
-            <div class="avatar">
-              <img src="assets/icons/user-icon.svg">
-            </div>
-            <span class="name">Tài khoản</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><img class="svg-icon" src="assets/icons/notifi.svg"></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="http://truongkhoa.com/#/apps" target="_blank"><img class="svg-icon" src="assets/icons/apps.svg"></a>
-        </li>
-      </ul>
+    <div class="container">
+        <a class="navbar-brand logo" href="#">
+            <img src="assets/icons/logo.png">
+            <span>Trưởng khoa</span>
+        </a>
+        <div class="collapse navbar-collapse top-bar-right menu-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="account" href="#">
+                        <div class="avatar">
+                            <img src="assets/icons/user-icon.svg">
+                        </div>
+                        <span class="name">Tài khoản</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><img class="svg-icon" src="assets/icons/notifi.svg"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://truongkhoa.com/#/apps" target="_blank"><img class="svg-icon" src="assets/icons/apps.svg"></a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
 
 <div class="container">
-  <div class="row justify-content-end">
-    <div class="line_menu">
-      <ul>
-        <li>
-          <a href="#">Từ điển bệnh</a>
-        </li>
-        <li>
-          <a href="#">Thuốc</a>
-        </li>
-        <li>
-          <a href="#">Cơ ở y tế</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="row justify-content-md-center">
-    <div class="search_container col-md-8 col-sm-12">
-      <div class="search_field">
-        <img class="icon" src="assets/icons/search-icon.svg">
-        <input class="search form-control form-control-lg" placeholder="Thêm bệnh hoặc triệu chứng" />
-      </div>
-    </div>
-  </div>
-  <div class="row justify-content-md-center content">
-    <div class="col-md-3 col-sm-4 col-block">
-      <!--   d-none d-sm-block -->
-      <div class="col-header">
-        Danh sách triệu chứng
-      </div>
-      <div class="col-content">
-
-
-        <div class="empty">
-          Tìm kiếm triệu chứng bằng cách gõ từ khoá vào ô tìm bệnh hoặc triệu chứng
+    <div class="row justify-content-end">
+        <div class="line_menu">
+            <ul>
+                <li>
+                    <a href="#">Từ điển bệnh</a>
+                </li>
+                <li>
+                    <a href="#">Thuốc</a>
+                </li>
+                <li>
+                    <a href="#">Cơ ở y tế</a>
+                </li>
+            </ul>
         </div>
-      </div>
-      <img class="next_arr" src="assets/icons/next.svg" alt="">
-
     </div>
+    <router-outlet></router-outlet>
 
-    <div class="col-md-3 col-sm-4 col-block">
-      <div class="col-header">
-        Triệu chứng đã chọn
-      </div>
-      <div class="col-content">
-        <div class="empty">
-          Chọn đúng triệu chứng mắc phải
-        </div>
-      </div>
-      <img class="next_arr" src="assets/icons/next.svg" alt="">
-    </div>
-    <div class="col-md-3 col-sm-4 col-block">
-      <div class="col-header">
-        Các bệnh liên quan
-      </div>
-      <div class="col-content last">
-        <div class="empty">
-          Các bệnh liên quan sẽ hiện ra theo triệu chứng đã chọn
-        </div>
-
-      </div>
-      <img class="next_arr hide-md" src="assets/icons/next.svg" alt="">
-    </div>
-  </div>
 
 </div>

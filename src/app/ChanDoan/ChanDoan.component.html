@@ -1,0 +1,69 @@
+<div class="row justify-content-md-center">
+    <div class="search_container col-md-8 col-sm-12">
+        <div class="search_field">
+            <img class="icon" src="assets/icons/search-icon.svg">
+            <input class="search form-control form-control-lg" placeholder="Thêm triệu chứng bệnh" />
+        </div>
+    </div>
+</div>
+<div class="row justify-content-md-center content">
+    <div class="col-lg-3 col-md-4 col-block h-100">
+        <div class="col-header">
+            Danh sách triệu chứng bệnh
+        </div>
+        <div class="col-content">
+            <ul *ngIf="dsTrieuChung.length > 0 ; else tcEmpty">
+                <li *ngFor="let trieuchung of dsTrieuChung">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" (change)="onAddTrieuChung(trieuchung)">
+                        <span class="custom-control-indicator"></span>
+                        <span  class="custom-control-description">{{ trieuchung.Name | truncate : 22 : '...'}}</span>
+                    </label>
+                </li>
+            </ul>
+            <ng-template #tcEmpty>
+                <div class="empty">
+                    Tìm kiếm triệu chứng bằng cách gõ từ khoá vào ô tìm bệnh hoặc triệu chứng
+                </div>
+            </ng-template>
+
+        </div>
+        <img class="next_arr" src="assets/icons/next.svg" alt="">
+
+    </div>
+
+    <div class="col-lg-3 col-md-4 h-100 col-block">
+        <div class="col-header">
+            Triệu chứng bệnh đã chọn
+        </div>
+        <div class="col-content">
+            <ul *ngIf="dsTrieuChungSelected.length > 0 ; else tcsEmpty">
+                <li *ngFor="let trieuchungs of dsTrieuChungSelected">
+                    <label class="custom-control custom-checkbox">
+                                <input type="checkbox" checked="checked" class="custom-control-input" (change)="onRemoveTrieuChung(trieuchungs)">
+                                <span class="custom-control-indicator"></span>
+                                <span  class="custom-control-description">{{ trieuchungs.Name | truncate : 22 : '...'}}</span>
+                            </label>
+                </li>
+            </ul>
+            <ng-template #tcsEmpty>
+                <div class="empty">
+                    Chọn đúng triệu chứng mắc phải
+                </div>
+            </ng-template>
+        </div>
+        <img class="next_arr" src="assets/icons/next.svg" alt="">
+    </div>
+    <div class="col-lg-3 col-md-4 col-block h-100">
+        <div class="col-header">
+            Các bệnh liên quan có thông tin
+        </div>
+        <div class="col-content last">
+            <div class="empty">
+                Các bệnh liên quan sẽ hiện ra theo triệu chứng đã chọn
+            </div>
+
+        </div>
+        <img class="next_arr hide-md" src="assets/icons/next.svg" alt="">
+    </div>
+</div>
