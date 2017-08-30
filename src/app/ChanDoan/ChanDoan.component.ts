@@ -42,6 +42,7 @@ export class ChanDoanComponent implements OnInit {
     onClearAll() {
         console.log('clear');
         this.dsTrieuChung = [];
+        this.dsTrieuChungCount = 0;
         // this.dsTrieuChungSelected = [];
         // this.dsBenh = [];
     }
