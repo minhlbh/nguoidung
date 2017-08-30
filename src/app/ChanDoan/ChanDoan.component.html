@@ -10,7 +10,7 @@
 <div class="row justify-content-md-center content">
     <div class="col-lg-3 col-md-4 col-block h-100">
         <div class="col-header">
-            Danh sách triệu chứng bệnh
+            Danh sách triệu chứng bệnh <span class="badge badge-danger" >{{dsTrieuChungCount}}</span>
         </div>
         <div class="col-content">
             <ul *ngIf="dsTrieuChung.length > 0 ; else tcEmpty">
@@ -35,7 +35,7 @@
 
     <div class="col-lg-3 col-md-4 h-100 col-block">
         <div class="col-header">
-            Triệu chứng bệnh đã chọn
+            Triệu chứng bệnh đã chọn <span class="badge badge-danger" >{{dsTrieuChungSelected.length}}</span>
         </div>
         <div class="col-content">
             <ul *ngIf="dsTrieuChungSelected.length > 0 ; else tcsEmpty">
@@ -57,7 +57,7 @@
     </div>
     <div class="col-lg-3 col-md-4 col-block h-100">
         <div class="col-header">
-            Các bệnh liên quan có thông tin
+            Các bệnh liên quan có thông tin <span class="badge badge-danger" >{{ dsBenh.length}}</span>
         </div>
         <div class="col-content last">
                 <ul *ngIf="dsBenh.length > 0 ; else bEmpty">

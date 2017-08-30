@@ -11,6 +11,7 @@ import 'rxjs/add/operator/debounceTime';
 export class ChanDoanComponent implements OnInit {
 
     dsTrieuChung: TrieuChung[] = [];
+    dsTrieuChungCount = 0;
     dsTrieuChungSelected: TrieuChung[] = [];
     dsBenh: Benh[] = [];
     searchKey = new FormControl('');
@@ -50,14 +51,15 @@ export class ChanDoanComponent implements OnInit {
     onSearchTrieuChung(keyword) {
         // console.log(keyword);
         this.trieuChungService.DSTrieuChung(keyword).subscribe(data => {
-            this.dsTrieuChung = data;
-            for (let index = 0; index < this.dsTrieuChung.length; index++) {
-                // let element = this.dsTrieuChung[index];
-                if (index >= 5) {
-                    // this.dsTrieuChung.splice(index, 1);
-                    this.dsTrieuChung.splice(index, 5);
-                }
-            }
+            this.dsTrieuChung = data.data;
+            this.dsTrieuChungCount = data.count;
+            // for (let index = 0; index < this.dsTrieuChung.length; index++) {
+            //     // let element = this.dsTrieuChung[index];
+            //     if (index >= 5) {
+            //         // this.dsTrieuChung.splice(index, 1);
+            //         this.dsTrieuChung.splice(index, 5);
+            //     }
+            // }
             console.log(this.dsTrieuChung);
         });
     }
