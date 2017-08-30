@@ -37,11 +37,12 @@ export class ChanDoanComponent implements OnInit {
     ngOnInit() {
 
     }
+
     onClearAll() {
         console.log('clear');
         this.dsTrieuChung = [];
-        this.dsTrieuChungSelected = [];
-        this.dsBenh = [];
+        // this.dsTrieuChungSelected = [];
+        // this.dsBenh = [];
     }
     onClearSearch() {
         this.searchKey.patchValue('');

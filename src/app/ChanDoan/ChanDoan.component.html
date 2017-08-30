@@ -2,7 +2,7 @@
     <div class="search_container col-md-8 col-sm-12">
         <div class="search_field">
             <img class="icon" src="assets/icons/search-icon.svg">
-            <img class="icon-end" src="assets/icons/cancel.svg" (click)="onClearSearch()">
+            <img *ngIf="searchKey.value" class="icon-end" src="assets/icons/cancel.svg" (click)="onClearSearch()">
             <input type="text" class="search form-control form-control-lg" placeholder="Thêm triệu chứng bệnh" [formControl]="searchKey" />
         </div>
     </div>
