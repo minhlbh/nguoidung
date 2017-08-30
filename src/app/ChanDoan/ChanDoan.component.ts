@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TrieuChung, TrieuChungService } from '../Services/TrieuChung.service';
+import { Benh, TrieuChung, TrieuChungService } from '../Services/TrieuChung.service';
+import { FormControl } from '@angular/forms';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
     selector: 'app-chandoan',
@@ -10,13 +12,43 @@ export class ChanDoanComponent implements OnInit {
 
     dsTrieuChung: TrieuChung[] = [];
     dsTrieuChungSelected: TrieuChung[] = [];
+    dsBenh: Benh[] = [];
+    searchKey = new FormControl('');
 
     constructor(
         private trieuChungService: TrieuChungService
-    ) { }
+    ) {
+        this.searchKey.valueChanges
+            .debounceTime(400)
+            .subscribe((event) => {
+                // this.doSearch(event);
+                // this.clickThuoc(null);
+                console.log(event);
+                if (event !== '') {
+                    this.onSearchTrieuChung(event);
+                } else {
+                    // this.dsBenh
+                    this.onClearAll();
+                }
+
+            });
+    }
 
     ngOnInit() {
-        this.trieuChungService.DSTrieuChung('a').subscribe(data => {
+
+    }
+    onClearAll() {
+        console.log('clear');
+        this.dsTrieuChung = [];
+        this.dsTrieuChungSelected = [];
+        this.dsBenh = [];
+    }
+    onClearSearch() {
+        this.searchKey.patchValue('');
+    }
+    onSearchTrieuChung(keyword) {
+        // console.log(keyword);
+        this.trieuChungService.DSTrieuChung(keyword).subscribe(data => {
             this.dsTrieuChung = data;
             for (let index = 0; index < this.dsTrieuChung.length; index++) {
                 // let element = this.dsTrieuChung[index];
@@ -33,17 +65,34 @@ export class ChanDoanComponent implements OnInit {
         const i = this.dsTrieuChung.indexOf(trieuChung);
         this.dsTrieuChung.splice(i, 1);
         this.dsTrieuChungSelected = [...this.dsTrieuChungSelected, trieuChung];
+        this.onTimBenh();
     }
     onRemoveTrieuChung(trieuChung: TrieuChung) {
         const i = this.dsTrieuChungSelected.indexOf(trieuChung);
         this.dsTrieuChungSelected.splice(i, 1);
         this.dsTrieuChung = [...this.dsTrieuChung, trieuChung];
+        this.onTimBenh();
     }
 
-    buildTrieuChung() {
-
+    buildTrieuChung(): String {
+        let icds = '';
+        this.dsTrieuChungSelected.forEach((icd, i) => {
+            icds += icd.Id + ' ';
+        });
+        return icds;
     }
 
+    onTimBenh() {
+        // this.buildTrieuChung
+        this.trieuChungService.BenhFromTrieuChung(this.buildTrieuChung()).subscribe(
+            data => {
+                this.dsBenh = data;
+            },
+            error => {
+                this.dsBenh = [];
+            }
+        );
+    }
 
 
 }

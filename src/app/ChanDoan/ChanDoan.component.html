@@ -2,7 +2,8 @@
     <div class="search_container col-md-8 col-sm-12">
         <div class="search_field">
             <img class="icon" src="assets/icons/search-icon.svg">
-            <input class="search form-control form-control-lg" placeholder="Thêm triệu chứng bệnh" />
+            <img class="icon-end" src="assets/icons/cancel.svg" (click)="onClearSearch()">
+            <input type="text" class="search form-control form-control-lg" placeholder="Thêm triệu chứng bệnh" [formControl]="searchKey" />
         </div>
     </div>
 </div>
@@ -17,7 +18,7 @@
                     <label class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" (change)="onAddTrieuChung(trieuchung)">
                         <span class="custom-control-indicator"></span>
-                        <span  class="custom-control-description">{{ trieuchung.Name | truncate : 22 : '...'}}</span>
+                        <span  class="custom-control-description">{{ trieuchung.Name}}</span>
                     </label>
                 </li>
             </ul>
@@ -42,7 +43,7 @@
                     <label class="custom-control custom-checkbox">
                                 <input type="checkbox" checked="checked" class="custom-control-input" (change)="onRemoveTrieuChung(trieuchungs)">
                                 <span class="custom-control-indicator"></span>
-                                <span  class="custom-control-description">{{ trieuchungs.Name | truncate : 22 : '...'}}</span>
+                                <span  class="custom-control-description">{{ trieuchungs.Name }}</span>
                             </label>
                 </li>
             </ul>
@@ -59,10 +60,20 @@
             Các bệnh liên quan có thông tin
         </div>
         <div class="col-content last">
-            <div class="empty">
-                Các bệnh liên quan sẽ hiện ra theo triệu chứng đã chọn
-            </div>
-
+                <ul *ngIf="dsBenh.length > 0 ; else bEmpty">
+                        <li *ngFor="let benh of dsBenh">
+                            <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" checked="checked" class="custom-control-input" >
+                                        <span class="custom-control-indicator"></span>
+                                        <span  class="custom-control-description">{{ benh.Name}}</span>
+                                    </label>
+                        </li>
+                    </ul>
+            <ng-template #bEmpty>
+                <div class="empty">
+                    Các bệnh liên quan sẽ hiện ra theo triệu chứng đã chọn
+                </div>
+            </ng-template>
         </div>
         <img class="next_arr hide-md" src="assets/icons/next.svg" alt="">
     </div>

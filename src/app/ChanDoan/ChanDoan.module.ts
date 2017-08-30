@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { ChanDoanComponent } from './ChanDoan.component';
 import { TrieuChungService } from '../Services/TrieuChung.service';
@@ -19,6 +19,7 @@ const Routing: ModuleWithProviders = RouterModule.forChild(routing);
     imports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         Routing,
         TruncateModule
     ],

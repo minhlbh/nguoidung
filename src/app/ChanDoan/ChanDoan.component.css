@@ -5,20 +5,28 @@
 }
 
 /* .search_field {
+    color: red;
 } */
 
 .search {
     padding-left: 40px;
 }
 
-.icon {
+.icon-end {
+    position: absolute;
+    right: 25px;
+    bottom: 12px;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+.icon{
     position: absolute;
     left: 25px;
     bottom: 9px;
     width: 20px;
     height: 20px;
 }
-
 .content {
     margin-top: 60px;
 }
