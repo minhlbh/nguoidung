@@ -33,12 +33,3 @@ export class TrieuChungService {
 
 }
 
-export class TrieuChung {
-    Id: number;
-    Name: String;
-}
-
-export interface Benh {
-    Id: number;
-    Name: String;
-}

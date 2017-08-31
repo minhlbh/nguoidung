@@ -7,8 +7,10 @@ import { ChanDoanComponent } from './ChanDoan.component';
 import { TrieuChungService } from '../Services/TrieuChung.service';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { ChiTietComponent } from './ChiTiet/ChiTiet.component';
+import { KetQuaComponent } from './KetQua/KetQua.component';
 
 // import { TruncatePipe } from 'angular2-truncate';
+import { ThongTinComponent } from './ThongTin/ThongTin.component';
 
 // Định nghĩa router riêng cho module này
 const routing: Routes = [
@@ -29,7 +31,9 @@ const Routing: ModuleWithProviders = RouterModule.forChild(routing);
     ],
     declarations: [
         ChanDoanComponent,
-        ChiTietComponent
-    ]
+        ChiTietComponent,
+        KetQuaComponent,
+    ThongTinComponent
+]
 })
 export class ChanDoanModule { }

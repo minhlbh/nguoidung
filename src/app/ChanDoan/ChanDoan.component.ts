@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Benh, TrieuChung, TrieuChungService } from '../Services/TrieuChung.service';
+import { TrieuChungService } from '../Services/TrieuChung.service';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { style, state, animate, transition, trigger } from '@angular/core';
+import { Benh, TrieuChung } from '../Share/Model';
 
 import { Observable } from 'rxjs/Observable';
 
