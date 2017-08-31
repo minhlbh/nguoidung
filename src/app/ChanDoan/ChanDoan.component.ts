@@ -5,7 +5,6 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { style, state, animate, transition, trigger } from '@angular/core';
 
-import 'rxjs/add/operator/debounceTime';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -24,6 +23,7 @@ import { Observable } from 'rxjs/Observable';
         ])
     ]
 })
+
 export class ChanDoanComponent implements OnInit {
     dsTrieuChung: TrieuChung[] = [];
     dsTrieuChungCount = 0;
@@ -38,20 +38,7 @@ export class ChanDoanComponent implements OnInit {
         private _sanitizer: DomSanitizer,
         public http: Http
     ) {
-        // this.searchKey.valueChanges
-        //     .debounceTime(400)
-        //     .subscribe((event) => {
-        //         // this.doSearch(event);
-        //         // this.clickThuoc(null);
-        //         console.log(event);
-        //         if (event !== '') {
-        //             this.onSearchTrieuChung(event);
-        //         } else {
-        //             // this.dsBenh
-        //             this.onClearAll();
-        //         }
 
-        //     });
     }
 
     observableSource = (keyword: any): Observable<any[]> => {
@@ -64,7 +51,6 @@ export class ChanDoanComponent implements OnInit {
 
                 .map(res => {
                     const json = res.json();
-                    // console.log(json);
                     this.loading_autocomplate = false;
                     return json;
                 });
@@ -84,19 +70,15 @@ export class ChanDoanComponent implements OnInit {
     }
 
     onClearAll() {
-        // console.log('clear');
         this.dsTrieuChung = [];
         this.dsTrieuChungCount = 0;
-        // this.dsTrieuChungSelected = [];
-        // this.dsBenh = [];
     }
     onClearSearch() {
         this.searchKey.patchValue('');
         this.onClearAll();
     }
     onSearchTrieuChung(keyword) {
-        // console.log(this.searchKey.value);
-        // console.log(keyword);
+
         if (keyword) {
             this.loading_dsTrieuChung = true;
             this.trieuChungService.DSTrieuChung(keyword).subscribe(data => {

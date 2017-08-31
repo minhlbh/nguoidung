@@ -25,7 +25,8 @@ const Routing: ModuleWithProviders = RouterModule.forRoot(routes, { preloadingSt
         HttpModule,
         BrowserAnimationsModule
     ],
-    providers: [],
+    providers: [
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
