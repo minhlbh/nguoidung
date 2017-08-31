@@ -13,8 +13,13 @@
     white-space: nowrap;
 	overflow-y: hidden;
 	overflow-x: scroll;
-	-webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
 }
+.tabs .tabs_header ul::-webkit-scrollbar {
+    display: none;
+}
+
 .tabs .tabs_header ul li{
     /* float: left; */
     margin-right: 20px;
