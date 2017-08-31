@@ -10,6 +10,7 @@
 
 .search {
     padding-left: 40px;
+    padding-right: 32px;
 }
 
 .icon-end {
@@ -19,8 +20,10 @@
     width: 14px;
     height: 14px;
     cursor: pointer;
+    z-index: 2;
 }
 .icon{
+    z-index: 2;
     position: absolute;
     left: 25px;
     bottom: 9px;
@@ -78,6 +81,11 @@
 /* .col-content ul li{ */
     /* max-width: 90%; */
 /* } */
+.loading_ds {
+    position: absolute;
+    top: 50%;
+    left: 45%;
+}
 
 @media only screen and (max-width: 768px) {
     .search_container {

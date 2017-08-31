@@ -6,6 +6,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ChanDoanComponent } from './ChanDoan.component';
 import { TrieuChungService } from '../Services/TrieuChung.service';
 import { TruncateModule } from 'ng2-truncate';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 
 // import { TruncatePipe } from 'angular2-truncate';
 
@@ -21,7 +22,8 @@ const Routing: ModuleWithProviders = RouterModule.forChild(routing);
         FormsModule,
         ReactiveFormsModule,
         Routing,
-        TruncateModule
+        TruncateModule,
+        NguiAutoCompleteModule
     ],
     providers: [
         TrieuChungService

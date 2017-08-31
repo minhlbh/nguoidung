@@ -2,8 +2,22 @@
     <div class="search_container col-md-8 col-sm-12">
         <div class="search_field">
             <img class="icon" src="assets/icons/search-icon.svg">
-            <img *ngIf="searchKey.value" class="icon-end" src="assets/icons/cancel.svg" (click)="onClearSearch()">
-            <input type="text" class="search form-control form-control-lg" placeholder="Thêm triệu chứng bệnh" [formControl]="searchKey"
+            <img [@fadeInOut] *ngIf="searchKey.value && !loading_autocomplate" class="icon-end" src="assets/icons/cancel.svg" (click)="onClearSearch()">
+            <!-- [formControl]="searchKey" -->
+            <svg [@fadeInOut] *ngIf="loading_autocomplate" class="spinner icon-end" width="10px" height="10px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+             </svg>
+
+            <input type="text" class="search form-control form-control-lg" placeholder="Thêm triệu chứng bệnh"
+
+                ngui-auto-complete
+                [formControl]="searchKey"
+                [source]="observableSource"
+                [list-formatter]="autocompleListFormatter"
+                display-property-name="Name"
+                max-num-list="5"
+                min-chars="1"
+                (valueChanged)="onSearchTrieuChung($event)"
             />
         </div>
     </div>
@@ -14,7 +28,12 @@
             Danh sách triệu chứng bệnh <span class="badge badge-danger">{{dsTrieuChungCount}}</span>
         </div>
         <div class="col-content">
-            <ul *ngIf="dsTrieuChung.length > 0 ; else tcEmpty">
+            <div [@fadeInOut] *ngIf="loading_dsTrieuChung" class="loading_ds">
+                    <svg  class="spinner" width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                     </svg>
+            </div>
+            <ul *ngIf="dsTrieuChung.length > 0 && !loading_dsTrieuChung; else tcEmpty">
                 <li *ngFor="let trieuchung of dsTrieuChung">
                     <label class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" (change)="onAddTrieuChung(trieuchung)">
@@ -24,7 +43,7 @@
                 </li>
             </ul>
             <ng-template #tcEmpty>
-                <div class="empty">
+                <div class="empty" *ngIf="!loading_dsTrieuChung">
                     Tìm kiếm triệu chứng bằng cách gõ từ khoá vào ô tìm bệnh hoặc triệu chứng
                 </div>
             </ng-template>

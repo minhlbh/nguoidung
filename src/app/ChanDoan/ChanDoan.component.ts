@@ -1,46 +1,90 @@
 import { Component, OnInit } from '@angular/core';
 import { Benh, TrieuChung, TrieuChungService } from '../Services/TrieuChung.service';
 import { FormControl } from '@angular/forms';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { style, state, animate, transition, trigger } from '@angular/core';
+
 import 'rxjs/add/operator/debounceTime';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'app-chandoan',
     templateUrl: './ChanDoan.component.html',
-    styleUrls: ['./ChanDoan.component.css']
+    styleUrls: ['./ChanDoan.component.css'],
+    animations: [
+        trigger('fadeInOut', [
+            transition(':enter', [   // :enter is alias to 'void => *'
+                style({ opacity: 0 }),
+                animate(50, style({ opacity: 1 }))
+            ]),
+            transition(':leave', [   // :leave is alias to '* => void'
+                animate(50, style({ opacity: 0 }))
+            ])
+        ])
+    ]
 })
 export class ChanDoanComponent implements OnInit {
-
     dsTrieuChung: TrieuChung[] = [];
     dsTrieuChungCount = 0;
     dsTrieuChungSelected: TrieuChung[] = [];
     dsBenh: Benh[] = [];
     searchKey = new FormControl('');
+    loading_autocomplate = false;
+    loading_dsTrieuChung = false;
 
     constructor(
-        private trieuChungService: TrieuChungService
+        private trieuChungService: TrieuChungService,
+        private _sanitizer: DomSanitizer,
+        public http: Http
     ) {
-        this.searchKey.valueChanges
-            .debounceTime(400)
-            .subscribe((event) => {
-                // this.doSearch(event);
-                // this.clickThuoc(null);
-                console.log(event);
-                if (event !== '') {
-                    this.onSearchTrieuChung(event);
-                } else {
-                    // this.dsBenh
-                    this.onClearAll();
-                }
+        // this.searchKey.valueChanges
+        //     .debounceTime(400)
+        //     .subscribe((event) => {
+        //         // this.doSearch(event);
+        //         // this.clickThuoc(null);
+        //         console.log(event);
+        //         if (event !== '') {
+        //             this.onSearchTrieuChung(event);
+        //         } else {
+        //             // this.dsBenh
+        //             this.onClearAll();
+        //         }
 
-            });
+        //     });
     }
+
+    observableSource = (keyword: any): Observable<any[]> => {
+        const url: string =
+            'http://api.truongkhoa.com/api/CSDLYT/ICD_Suggest?term=' + keyword;
+
+        if (keyword) {
+            this.loading_autocomplate = true;
+            return this.http.get(url)
+
+                .map(res => {
+                    const json = res.json();
+                    // console.log(json);
+                    this.loading_autocomplate = false;
+                    return json;
+                });
+        } else {
+            return Observable.of([]);
+        }
+    }
+
+    autocompleListFormatter = (data: any): SafeHtml => {
+        const html = `<span style="display:block">${data.Name}</span>`;
+        return this._sanitizer.bypassSecurityTrustHtml(html);
+    }
+
 
     ngOnInit() {
 
     }
 
     onClearAll() {
-        console.log('clear');
+        // console.log('clear');
         this.dsTrieuChung = [];
         this.dsTrieuChungCount = 0;
         // this.dsTrieuChungSelected = [];
@@ -48,21 +92,20 @@ export class ChanDoanComponent implements OnInit {
     }
     onClearSearch() {
         this.searchKey.patchValue('');
+        this.onClearAll();
     }
     onSearchTrieuChung(keyword) {
+        // console.log(this.searchKey.value);
         // console.log(keyword);
-        this.trieuChungService.DSTrieuChung(keyword).subscribe(data => {
-            this.dsTrieuChung = data.data;
-            this.dsTrieuChungCount = data.count;
-            // for (let index = 0; index < this.dsTrieuChung.length; index++) {
-            //     // let element = this.dsTrieuChung[index];
-            //     if (index >= 5) {
-            //         // this.dsTrieuChung.splice(index, 1);
-            //         this.dsTrieuChung.splice(index, 5);
-            //     }
-            // }
-            console.log(this.dsTrieuChung);
-        });
+        if (keyword) {
+            this.loading_dsTrieuChung = true;
+            this.trieuChungService.DSTrieuChung(keyword).subscribe(data => {
+                this.dsTrieuChung = data.data;
+                this.dsTrieuChungCount = data.count;
+                this.loading_dsTrieuChung = false;
+            });
+        }
+
     }
 
     onAddTrieuChung(trieuChung: TrieuChung) {
