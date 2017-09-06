@@ -8,9 +8,12 @@ import { TrieuChungService } from '../Services/TrieuChung.service';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { ChiTietComponent } from './ChiTiet/ChiTiet.component';
 import { KetQuaComponent } from './KetQua/KetQua.component';
+import { NgSwitch, NgSwitchCase} from '@angular/common';
 
 // import { TruncatePipe } from 'angular2-truncate';
 import { ThongTinComponent } from './ThongTin/ThongTin.component';
+import { KinhNghiemComponent } from './KinhNghiem/KinhNghiem.component';
+import { DichVuComponent } from './DichVu/DichVu.component';
 
 // Định nghĩa router riêng cho module này
 const routing: Routes = [
@@ -27,13 +30,17 @@ const Routing: ModuleWithProviders = RouterModule.forChild(routing);
         NguiAutoCompleteModule
     ],
     providers: [
-        TrieuChungService
+        TrieuChungService,
+        NgSwitch,
+        NgSwitchCase
     ],
     declarations: [
         ChanDoanComponent,
         ChiTietComponent,
         KetQuaComponent,
-    ThongTinComponent
+        ThongTinComponent,
+    KinhNghiemComponent,
+    DichVuComponent
 ]
 })
 export class ChanDoanModule { }

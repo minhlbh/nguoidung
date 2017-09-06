@@ -1,19 +1,32 @@
 <div class="row">
-        <div class="col" style="margin-top:30px;">
-            <div class="tabs">
-                <div class="tabs_header">
-                    <ul>
-                        <li><a class="active" href="#">Chi tiết</a></li>
-                        <li><a href="#">Thông tin</a></li>
-                        <li><a href="#">Kinh nghiệm khám chữa</a></li>
-                        <li><a href="#">Dịch vụ</a></li>
-                        <div class="clearfix"></div>
-                    </ul>
+    <div class="col" style="margin-top:30px;">
+        <div class="tabs" [ngSwitch]="tab">
+            <div class="tabs_header" >
+                <ul>
+                    <li><a [ngClass]="{'active': tab=='CHITIETBENH'}" (click)="tab='CHITIETBENH'">Chi tiết</a></li>
+                    <li><a [ngClass]="{'active': tab=='THONGTIN'}" (click)="tab='THONGTIN'">Thông tin</a></li>
+                    <li><a [ngClass]="{'active': tab=='KINHNGHIEM'}" (click)="tab='KINHNGHIEM'">Kinh nghiệm khám chữa</a></li>
+                    <li><a [ngClass]="{'active': tab=='DICHVU'}" (click)="tab='DICHVU'">Dịch vụ</a></li>
+                    <div class="clearfix"></div>
+                </ul>
 
-                </div>
 
-                <app-chitiet></app-chitiet>
 
             </div>
+            <ng-container *ngSwitchCase="'CHITIETBENH'">
+                <app-chitiet></app-chitiet>
+            </ng-container>
+            <ng-container *ngSwitchCase="'THONGTIN'">
+                <app-thongtin></app-thongtin>
+            </ng-container>
+            <ng-container *ngSwitchCase="'KINHNGHIEM'">
+                <app-kinhnghiem></app-kinhnghiem>
+            </ng-container>
+            <ng-container *ngSwitchCase="'DICHVU'">
+                <app-dichvu></app-dichvu>
+            </ng-container>
+
+
         </div>
     </div>
+</div>
