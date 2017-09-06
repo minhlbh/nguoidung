@@ -1,9 +1,9 @@
 export class TrieuChung {
-    Id: number;
+    _id: number;
     Name: String;
 }
 
 export class Benh {
-    Id: number;
+    _id: number;
     Name: String;
 }

@@ -5,6 +5,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { style, state, animate, transition, trigger } from '@angular/core';
 import { Benh, TrieuChung } from '../Share/Model';
+import { PageScrollConfig } from 'ng2-page-scroll';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -39,19 +40,31 @@ export class ChanDoanComponent implements OnInit {
         private _sanitizer: DomSanitizer,
         public http: Http
     ) {
-
+        PageScrollConfig.defaultScrollOffset = 110;
+        PageScrollConfig.defaultEasingLogic = {
+            ease: (t: number, b: number, c: number, d: number): number => {
+                // easeInOutExpo easing
+                if (t === 0) { return b; }
+                if (t === d) { return b + c; }
+                if ((t /= d / 2) < 1) {
+                    return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
+                }
+                return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
+            }
+        };
     }
 
     observableSource = (keyword: any): Observable<any[]> => {
         const url: string =
-            'http://api.truongkhoa.com/api/CSDLYT/ICD_Suggest?term=' + keyword;
+            'http://api.truongkhoa.com/api/CSDLYT/SearchTrieuChung?term=' + keyword;
 
         if (keyword) {
             this.loading_autocomplate = true;
             return this.http.get(url)
-
                 .map(res => {
+
                     const json = res.json();
+                    console.log(json);
                     this.loading_autocomplate = false;
                     return json;
                 });
@@ -83,7 +96,8 @@ export class ChanDoanComponent implements OnInit {
         if (keyword) {
             this.loading_dsTrieuChung = true;
             this.trieuChungService.DSTrieuChung(keyword).subscribe(data => {
-                this.dsTrieuChung = data.data;
+                console.log(data);
+                this.dsTrieuChung = data;
                 this.dsTrieuChungCount = data.count;
                 this.loading_dsTrieuChung = false;
             });
@@ -104,10 +118,11 @@ export class ChanDoanComponent implements OnInit {
         this.onTimBenh();
     }
 
-    buildTrieuChung(): String {
-        let icds = '';
+    buildTrieuChung() {
+        let icds = [];
+        // console.log(this.dsTrieuChungSelected);
         this.dsTrieuChungSelected.forEach((icd, i) => {
-            icds += icd.Id + ' ';
+            icds = [...icds, icd._id];
         });
         return icds;
     }
@@ -116,9 +131,11 @@ export class ChanDoanComponent implements OnInit {
         // this.buildTrieuChung
         this.trieuChungService.BenhFromTrieuChung(this.buildTrieuChung()).subscribe(
             data => {
+                console.log(data);
                 this.dsBenh = data;
             },
             error => {
+                console.log(error);
                 this.dsBenh = [];
             }
         );

@@ -1,30 +1,31 @@
 <div class="row">
     <div class="col" style="margin-top:30px;">
         <div class="tabs" [ngSwitch]="tab">
-            <div ngui-sticky>
+            <div ngui-sticky sticky-after=".navbar">
                 <div class="tabs_header">
                     <ul>
-                        <li><a [ngClass]="{'active': tab=='CHITIETBENH'}" (click)="tab='CHITIETBENH'">Chi tiết</a></li>
-                        <li><a [ngClass]="{'active': tab=='THONGTIN'}" (click)="tab='THONGTIN'">Thông tin</a></li>
-                        <li><a [ngClass]="{'active': tab=='KINHNGHIEM'}" (click)="tab='KINHNGHIEM'">Kinh nghiệm khám chữa</a></li>
-                        <li><a [ngClass]="{'active': tab=='DICHVU'}" (click)="tab='DICHVU'">Dịch vụ</a></li>
+                        <li><a [ngClass]="{'active': tab=='CHITIETBENH'}" (click)="tab='CHITIETBENH'" pageScroll href="#awesomePart" [pageScrollDuration]="500">Chi tiết</a></li>
+                        <li><a [ngClass]="{'active': tab=='THONGTIN'}" (click)="tab='THONGTIN'" pageScroll href="#awesomePart" [pageScrollDuration]="500">Thông tin</a></li>
+                        <li><a [ngClass]="{'active': tab=='KINHNGHIEM'}" (click)="tab='KINHNGHIEM'" pageScroll href="#awesomePart" [pageScrollDuration]="500">Kinh nghiệm khám chữa</a></li>
+                        <li><a [ngClass]="{'active': tab=='DICHVU'}" (click)="tab='DICHVU'" pageScroll href="#awesomePart" [pageScrollDuration]="500">Dịch vụ</a></li>
                         <div class="clearfix"></div>
                     </ul>
                 </div>
             </div>
-            <ng-container *ngSwitchCase="'CHITIETBENH'">
-                <app-chitiet></app-chitiet>
-            </ng-container>
-            <ng-container *ngSwitchCase="'THONGTIN'">
-                <app-thongtin></app-thongtin>
-            </ng-container>
-            <ng-container *ngSwitchCase="'KINHNGHIEM'">
-                <app-kinhnghiem></app-kinhnghiem>
-            </ng-container>
-            <ng-container *ngSwitchCase="'DICHVU'">
-                <app-dichvu></app-dichvu>
-            </ng-container>
-
+            <div id="awesomePart">
+                <ng-container *ngSwitchCase="'CHITIETBENH'">
+                    <app-chitiet></app-chitiet>
+                </ng-container>
+                <ng-container *ngSwitchCase="'THONGTIN'">
+                    <app-thongtin></app-thongtin>
+                </ng-container>
+                <ng-container *ngSwitchCase="'KINHNGHIEM'">
+                    <app-kinhnghiem></app-kinhnghiem>
+                </ng-container>
+                <ng-container *ngSwitchCase="'DICHVU'">
+                    <app-dichvu></app-dichvu>
+                </ng-container>
+            </div>
 
         </div>
     </div>

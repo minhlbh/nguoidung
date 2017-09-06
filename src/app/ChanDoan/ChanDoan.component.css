@@ -37,6 +37,9 @@
 .content .col-content {
     min-height: 120px;
     border-right: solid 1px rgba(134, 186, 203, 0.53);
+    max-height: 200px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .content .col-content.last {

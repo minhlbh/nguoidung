@@ -16,7 +16,7 @@ export class TrieuChungService {
 
     DSTrieuChung(keyword): Observable<any> {
         // ...using get request
-        return this.http.get(`${this.icdURL}?term=${keyword}`)
+        return this.http.get(`${environment.apiUrl}CSDLYT/SearchTrieuChung?term=${keyword}`)
             // ...and calling .json() on the response to return data
             .map((res: Response) => res.json())
             // ...errors if any
@@ -24,11 +24,17 @@ export class TrieuChungService {
     }
 
     BenhFromTrieuChung(icds): Observable<any> {
-        return this.http.get(`${environment.apiUrl}CSDLYT/Benh_From_ICD?DsIdICD10=${icds}`)
-        // ...and calling .json() on the response to return data
-        .map((res: Response) => res.json())
-        // ...errors if any
-        .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+        const body = new FormData();
+        body.append('IdsTrieuChung', icds);
+        // const headers = new Headers();
+        // headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        const options = new RequestOptions({  });
+
+        return this.http.post(`${environment.apiUrl}CSDLYT/Benh_From_TCIDS`, body, options)
+            // ...and calling .json() on the response to return data
+            .map((res: Response) => res.json())
+            // ...errors if any
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
 }

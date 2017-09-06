@@ -82,7 +82,7 @@
         <div class="col-content last">
             <ul *ngIf="dsBenh.length > 0 ; else bEmpty">
                 <li *ngFor="let benh of dsBenh">
-                    <label class="custom-control custom-checkbox">
+                    <label class="custom-control custom-checkbox" pageScroll href="#awesomePart" [pageScrollDuration]="500">
                         <input type="checkbox" checked="checked" class="custom-control-input" >
                         <span class="custom-control-indicator"></span>
                         <span  class="custom-control-description">{{ benh.Name}}</span>
