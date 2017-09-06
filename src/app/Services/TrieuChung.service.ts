@@ -30,7 +30,7 @@ export class TrieuChungService {
         // headers.append('Content-Type', 'application/x-www-form-urlencoded');
         // const options = new RequestOptions({ headers: headers });
 
-        return this.http.post(`http://localhost:5001/api/CSDLYT/Benh_From_TCIDS`, icds, null)
+        return this.http.post(`http://api.truongkhoa.com/api/CSDLYT/Benh_From_TCIDS`, icds, null)
             // ...and calling .json() on the response to return data
             .map((res: Response) => res.json())
             // ...errors if any

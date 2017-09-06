@@ -61,6 +61,15 @@
     color: rgba(0, 0, 0, 0.33);
 }
 
+.col-content ul li label{
+    cursor: pointer;
+}
+
+.col-content ul li label:hover{
+    cursor: pointer;
+    color: #00749A;
+}
+
 .next_arr {
     position: absolute;
     right: 8px;
