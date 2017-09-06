@@ -227,22 +227,27 @@ input.form-control:focus {
     }
 }
 
+
 /* .ngui-auto-complete {
     top: 2px;
     box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 6px 9px rgba(0,0,0,.2);
 } */
-.ngui-auto-complete > ul {
+
+.ngui-auto-complete>ul {
     border: none !important;
-    animation:none !important;
-    box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 6px 9px rgba(0,0,0,.2);
+    animation: none !important;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .1), 0 6px 9px rgba(0, 0, 0, .2);
 }
-.ngui-auto-complete > ul li:hover {
+
+.ngui-auto-complete>ul li:hover {
     background-color: rgba(0, 0, 0, 0.05) !important;
 }
-.ngui-auto-complete > ul li.selected{
+
+.ngui-auto-complete>ul li.selected {
     background-color: rgba(0, 0, 0, 0.05) !important;
 }
-.ngui-auto-complete > ul li {
+
+.ngui-auto-complete>ul li {
     line-height: 32px;
     height: 34px;
     padding: 2px 5px;
@@ -250,182 +255,189 @@ input.form-control:focus {
     text-align: left;
     cursor: pointer;
 }
-.ngui-auto-complete > ul li.no-match-found{
+
+.ngui-auto-complete>ul li.no-match-found {
     display: none;
 }
-.ngui-auto-complete > ul li.loading{
+
+.ngui-auto-complete>ul li.loading {
     display: none;
 }
-
-
-
-
 
 .spinner {
     -webkit-animation: rotator 1.4s linear infinite;
-            animation: rotator 1.4s linear infinite;
-  }
+    animation: rotator 1.4s linear infinite;
+}
 
-  @-webkit-keyframes rotator {
+@-webkit-keyframes rotator {
     0% {
-      -webkit-transform: rotate(0deg);
-              transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     100% {
-      -webkit-transform: rotate(270deg);
-              transform: rotate(270deg);
+        -webkit-transform: rotate(270deg);
+        transform: rotate(270deg);
     }
-  }
+}
 
-  @keyframes rotator {
+@keyframes rotator {
     0% {
-      -webkit-transform: rotate(0deg);
-              transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     100% {
-      -webkit-transform: rotate(270deg);
-              transform: rotate(270deg);
+        -webkit-transform: rotate(270deg);
+        transform: rotate(270deg);
     }
-  }
-  .path {
+}
+
+.path {
     stroke-dasharray: 187;
     stroke-dashoffset: 0;
     -webkit-transform-origin: center;
-            transform-origin: center;
+    transform-origin: center;
     -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
-            animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
-  }
+    animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+}
 
-  @-webkit-keyframes colors {
+@-webkit-keyframes colors {
     0% {
-      stroke: #4285F4;
+        stroke: #4285F4;
     }
     25% {
-      stroke: #DE3E35;
+        stroke: #DE3E35;
     }
     50% {
-      stroke: #F7C223;
+        stroke: #F7C223;
     }
     75% {
-      stroke: #1B9A59;
+        stroke: #1B9A59;
     }
     100% {
-      stroke: #4285F4;
+        stroke: #4285F4;
     }
-  }
+}
 
-  @keyframes colors {
+@keyframes colors {
     0% {
-      stroke: #4285F4;
+        stroke: #4285F4;
     }
     25% {
-      stroke: #DE3E35;
+        stroke: #DE3E35;
     }
     50% {
-      stroke: #F7C223;
+        stroke: #F7C223;
     }
     75% {
-      stroke: #1B9A59;
+        stroke: #1B9A59;
     }
     100% {
-      stroke: #4285F4;
+        stroke: #4285F4;
     }
-  }
-  @-webkit-keyframes dash {
-    0% {
-      stroke-dashoffset: 187;
-    }
-    50% {
-      stroke-dashoffset: 46.75;
-      -webkit-transform: rotate(135deg);
-              transform: rotate(135deg);
-    }
-    100% {
-      stroke-dashoffset: 187;
-      -webkit-transform: rotate(450deg);
-              transform: rotate(450deg);
-    }
-  }
-  @keyframes dash {
-    0% {
-      stroke-dashoffset: 187;
-    }
-    50% {
-      stroke-dashoffset: 46.75;
-      -webkit-transform: rotate(135deg);
-              transform: rotate(135deg);
-    }
-    100% {
-      stroke-dashoffset: 187;
-      -webkit-transform: rotate(450deg);
-              transform: rotate(450deg);
-    }
-  }
+}
 
+@-webkit-keyframes dash {
+    0% {
+        stroke-dashoffset: 187;
+    }
+    50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+    100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+        transform: rotate(450deg);
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 187;
+    }
+    50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+    100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+        transform: rotate(450deg);
+    }
+}
 
 
 /* tabs */
-  .tabs {
+
+.tabs {
     width: 100%;
 }
+
 .tabs .tabs_header {
     width: 100%;
     clear: both;
+    background-color: #F8F8F8;
 }
-.tabs .tabs_header ul{
+
+.tabs .tabs_header ul {
     list-style: none;
     border-bottom: solid 1px #ccc;
     width: 100%;
     padding: 0 0 5px 0;
 }
 
-.tabs .tabs_header ul li{
+.tabs .tabs_header ul li {
     /* float: left; */
     margin-right: 20px;
     display: inline;
     cursor: pointer;
 }
-.tabs .tabs_header ul li a{
+
+.tabs .tabs_header ul li a {
     text-decoration: none;
     color: #A4A4A4;
     font-weight: 600;
     font-size: 15px;
     padding: 0 10px 5px 10px;
 }
-.tabs .tabs_header ul li a:hover{
+
+.tabs .tabs_header ul li a:hover {
     color: #00749A;
     border-bottom: 1px solid #00749A;
     box-shadow: inset 0 -2px 0 #00749A;
-
 }
-.tabs .tabs_header ul li a.active{
+
+.tabs .tabs_header ul li a.active {
     color: #00749A;
     border-bottom: 1px solid #00749A;
     box-shadow: inset 0 -2px 0 #00749A;
 }
 
 .tabs .tabs_info {
-    margin-top:-10px;
+    margin-top: -10px;
     margin-left: 10px;
     font-size: 12px;
     color: #A4A4A4;
     font-weight: 300;
 }
 
-.tabs .tabs_content{
+.tabs .tabs_content {
     border: 1px solid #ddd;
     background-color: #fff;
     padding: 10px;
     margin-top: 7px;
     border-radius: 2px;
 }
-.tabs .tabs_content .title{
+
+.tabs .tabs_content .title {
     font-size: 17px;
     padding-bottom: 7px;
 }
 
 @media only screen and (max-width: 768px) {
-    .tabs .tabs_header ul{
+    .tabs .tabs_header ul {
         list-style: none;
         border-bottom: solid 1px #ccc;
         width: 100%;

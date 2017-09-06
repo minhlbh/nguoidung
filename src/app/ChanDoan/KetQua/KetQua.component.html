@@ -1,17 +1,16 @@
 <div class="row">
     <div class="col" style="margin-top:30px;">
         <div class="tabs" [ngSwitch]="tab">
-            <div class="tabs_header" >
-                <ul>
-                    <li><a [ngClass]="{'active': tab=='CHITIETBENH'}" (click)="tab='CHITIETBENH'">Chi tiết</a></li>
-                    <li><a [ngClass]="{'active': tab=='THONGTIN'}" (click)="tab='THONGTIN'">Thông tin</a></li>
-                    <li><a [ngClass]="{'active': tab=='KINHNGHIEM'}" (click)="tab='KINHNGHIEM'">Kinh nghiệm khám chữa</a></li>
-                    <li><a [ngClass]="{'active': tab=='DICHVU'}" (click)="tab='DICHVU'">Dịch vụ</a></li>
-                    <div class="clearfix"></div>
-                </ul>
-
-
-
+            <div ngui-sticky>
+                <div class="tabs_header">
+                    <ul>
+                        <li><a [ngClass]="{'active': tab=='CHITIETBENH'}" (click)="tab='CHITIETBENH'">Chi tiết</a></li>
+                        <li><a [ngClass]="{'active': tab=='THONGTIN'}" (click)="tab='THONGTIN'">Thông tin</a></li>
+                        <li><a [ngClass]="{'active': tab=='KINHNGHIEM'}" (click)="tab='KINHNGHIEM'">Kinh nghiệm khám chữa</a></li>
+                        <li><a [ngClass]="{'active': tab=='DICHVU'}" (click)="tab='DICHVU'">Dịch vụ</a></li>
+                        <div class="clearfix"></div>
+                    </ul>
+                </div>
             </div>
             <ng-container *ngSwitchCase="'CHITIETBENH'">
                 <app-chitiet></app-chitiet>

@@ -9,6 +9,7 @@ import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { ChiTietComponent } from './ChiTiet/ChiTiet.component';
 import { KetQuaComponent } from './KetQua/KetQua.component';
 import { NgSwitch, NgSwitchCase} from '@angular/common';
+import { NguiStickyModule } from '@ngui/sticky';
 
 // import { TruncatePipe } from 'angular2-truncate';
 import { ThongTinComponent } from './ThongTin/ThongTin.component';
@@ -27,7 +28,8 @@ const Routing: ModuleWithProviders = RouterModule.forChild(routing);
         FormsModule,
         ReactiveFormsModule,
         Routing,
-        NguiAutoCompleteModule
+        NguiAutoCompleteModule,
+        NguiStickyModule
     ],
     providers: [
         TrieuChungService,
