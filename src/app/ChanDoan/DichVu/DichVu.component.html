@@ -1,3 +1,35 @@
-<p>
-  DichVu works!
+<p *ngIf="!loading else preload">
+  {{testdata | json}}
 </p>
+<!--Pre Loadding-->
+<ng-template #preload>
+    <!--Loading page-->
+    <div style="margin-top:20px">
+        <div id="app-boot-bg">
+            <div class="box-holder">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="rect"></div>
+                        <div class="line-wrapper">
+                            <div class="line width110"></div>
+                            <div class="line width250"></div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="line-wrapper">
+                            <div class="height20"></div>
+                            <div class="line width410"></div>
+                            <div class="line width470"></div>
+                            <div class="line width440"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--End Loading page-->
+</ng-template>

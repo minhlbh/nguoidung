@@ -6,8 +6,6 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class TrieuChungService {
 
-    private icdURL = `${environment.apiUrl}/CSDLYT/ICD_Search`;
-
     constructor(
         private http: Http
     ) {
@@ -15,27 +13,36 @@ export class TrieuChungService {
     }
 
     DSTrieuChung(keyword): Observable<any> {
-        // ...using get request
         return this.http.get(`${environment.apiUrl}CSDLYT/SearchTrieuChung?term=${keyword}`)
-            // ...and calling .json() on the response to return data
             .map((res: Response) => res.json())
-            // ...errors if any
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     BenhFromTrieuChung(icds): Observable<any> {
-        // const body = new FormData();
-        // body.append('ids', icds);
-        // const headers = new Headers();
-        // headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        // const options = new RequestOptions({ headers: headers });
 
-        return this.http.post(`http://api.truongkhoa.com/api/CSDLYT/Benh_From_TCIDS`, icds, null)
-            // ...and calling .json() on the response to return data
+        return this.http.post(`${environment.apiUrl}CSDLYT/Benh_From_TCIDS`, icds, null)
             .map((res: Response) => res.json())
-            // ...errors if any
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
+
+    DichVuFromBenhID(id: string): Observable<any> {
+        return this.http.get(`${environment.apiUrl}CSDLYT/DichVu_by_BenhID?id=${id}`)
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+    }
+
+    TinFromBenhID(id: string): Observable<any> {
+        return this.http.get(`${environment.apiUrl}CSDLYT/Tin_by_BenhID?id=${id}`)
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+    }
+
+    ChiTietBenhFromID(id: string): Observable<any> {
+        return this.http.get(`${environment.apiUrl}CSDLYT/ChiTietBenh?id=${id}`)
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+    }
+
 
 }
 

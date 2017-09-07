@@ -34,13 +34,14 @@ export class ChanDoanComponent implements OnInit {
     searchKey = new FormControl('');
     loading_autocomplate = false;
     loading_dsTrieuChung = false;
+    benh = <Benh>{};
 
     constructor(
         private trieuChungService: TrieuChungService,
         private _sanitizer: DomSanitizer,
         public http: Http
     ) {
-        PageScrollConfig.defaultScrollOffset = 110;
+        PageScrollConfig.defaultScrollOffset = 12;
         PageScrollConfig.defaultEasingLogic = {
             ease: (t: number, b: number, c: number, d: number): number => {
                 // easeInOutExpo easing
@@ -62,9 +63,7 @@ export class ChanDoanComponent implements OnInit {
             this.loading_autocomplate = true;
             return this.http.get(url)
                 .map(res => {
-
                     const json = res.json();
-                    console.log(json);
                     this.loading_autocomplate = false;
                     return json;
                 });
@@ -98,7 +97,7 @@ export class ChanDoanComponent implements OnInit {
             this.trieuChungService.DSTrieuChung(keyword).subscribe(data => {
                 console.log(data);
                 this.dsTrieuChung = data;
-                this.dsTrieuChungCount = data.count;
+                this.dsTrieuChungCount = data.length;
                 this.loading_dsTrieuChung = false;
             });
         }
@@ -140,6 +139,8 @@ export class ChanDoanComponent implements OnInit {
             }
         );
     }
-
+    onShowBenh(benh: Benh) {
+        this.benh = benh;
+    }
 
 }

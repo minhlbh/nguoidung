@@ -1,9 +1,10 @@
-export class TrieuChung {
+export interface TrieuChung {
     _id: number;
     Name: String;
 }
 
-export class Benh {
+export interface Benh {
     _id: number;
     Name: String;
+    ChiTiet: String;
 }

@@ -15,6 +15,7 @@ export class KetQuaComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        this.tab = 'CHITIETBENH';
     }
 
 }

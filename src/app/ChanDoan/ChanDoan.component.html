@@ -1,3 +1,4 @@
+
 <div class="row justify-content-md-center">
     <div class="search_container col-md-8 col-sm-12">
         <div class="search_field">
@@ -82,7 +83,7 @@
         <div class="col-content last">
             <ul *ngIf="dsBenh.length > 0 ; else bEmpty">
                 <li *ngFor="let benh of dsBenh">
-                    <label class="custom-control custom-checkbox" pageScroll href="#awesomePart" [pageScrollDuration]="500">
+                    <label class="custom-control custom-checkbox" (click)="onShowBenh(benh)" pageScroll href="#awesomePart" [pageScrollDuration]="500">
                         <input type="checkbox" checked="checked" class="custom-control-input" >
                         <span class="custom-control-indicator"></span>
                         <span  class="custom-control-description">{{ benh.Name}}</span>
@@ -98,5 +99,5 @@
         <img class="next_arr hide-md" src="assets/icons/next.svg" alt="">
     </div>
 </div>
-<app-ketqua></app-ketqua>
+<app-ketqua [benh]="benh" ></app-ketqua>
 

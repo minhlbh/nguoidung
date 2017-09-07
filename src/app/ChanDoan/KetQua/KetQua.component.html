@@ -1,29 +1,34 @@
-<div class="row">
+<div id="awesomePart"></div>
+<!-- *ngIf="benh.Name" -->
+<div class="row" *ngIf="benh.Name">
     <div class="col" style="margin-top:30px;">
         <div class="tabs" [ngSwitch]="tab">
             <div ngui-sticky sticky-after=".navbar">
                 <div class="tabs_header">
                     <ul>
-                        <li><a [ngClass]="{'active': tab=='CHITIETBENH'}" (click)="tab='CHITIETBENH'" pageScroll href="#awesomePart" [pageScrollDuration]="500">Chi tiết</a></li>
-                        <li><a [ngClass]="{'active': tab=='THONGTIN'}" (click)="tab='THONGTIN'" pageScroll href="#awesomePart" [pageScrollDuration]="500">Thông tin</a></li>
-                        <li><a [ngClass]="{'active': tab=='KINHNGHIEM'}" (click)="tab='KINHNGHIEM'" pageScroll href="#awesomePart" [pageScrollDuration]="500">Kinh nghiệm khám chữa</a></li>
-                        <li><a [ngClass]="{'active': tab=='DICHVU'}" (click)="tab='DICHVU'" pageScroll href="#awesomePart" [pageScrollDuration]="500">Dịch vụ</a></li>
-                        <div class="clearfix"></div>
+                        <li><a [ngClass]="{'active': tab=='CHITIETBENH'}" (click)="tab='CHITIETBENH'" pageScroll href="#awesomePart"
+                                [pageScrollDuration]="500">Chi tiết</a></li>
+                        <li><a [ngClass]="{'active': tab=='THONGTIN'}" (click)="tab='THONGTIN'" pageScroll href="#awesomePart"
+                                [pageScrollDuration]="500">Thông tin</a></li>
+                        <li><a [ngClass]="{'active': tab=='KINHNGHIEM'}" (click)="tab='KINHNGHIEM'" pageScroll href="#awesomePart"
+                                [pageScrollDuration]="500">Kinh nghiệm khám chữa</a></li>
+                        <!-- <li><a [ngClass]="{'active': tab=='DICHVU'}" (click)="tab='DICHVU'" pageScroll href="#awesomePart" [pageScrollDuration]="500">Dịch vụ</a></li>
+                        <div class="clearfix"></div> -->
                     </ul>
                 </div>
             </div>
-            <div id="awesomePart">
+            <div>
                 <ng-container *ngSwitchCase="'CHITIETBENH'">
-                    <app-chitiet></app-chitiet>
+                    <app-chitiet [BenhID]="benh._id"></app-chitiet>
                 </ng-container>
                 <ng-container *ngSwitchCase="'THONGTIN'">
-                    <app-thongtin></app-thongtin>
+                    <app-thongtin [BenhID]="benh._id"></app-thongtin>
                 </ng-container>
                 <ng-container *ngSwitchCase="'KINHNGHIEM'">
-                    <app-kinhnghiem></app-kinhnghiem>
+                    <app-kinhnghiem [BenhID]="benh._id"></app-kinhnghiem>
                 </ng-container>
                 <ng-container *ngSwitchCase="'DICHVU'">
-                    <app-dichvu></app-dichvu>
+                    <app-dichvu [BenhID]="benh._id"></app-dichvu>
                 </ng-container>
             </div>
 
