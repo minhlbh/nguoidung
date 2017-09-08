@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Benh } from '../../Share/Model';
 
 @Component({
@@ -7,15 +7,22 @@ import { Benh } from '../../Share/Model';
     styleUrls: ['./KetQua.component.css'],
 
 })
-export class KetQuaComponent implements OnInit {
+export class KetQuaComponent implements OnInit, OnChanges {
     @Input() benh: Benh;
 
     tab = 'CHITIETBENH';
 
-    constructor() { }
+    constructor(
+    ) { }
 
     ngOnInit() {
         this.tab = 'CHITIETBENH';
+    }
+    ngOnChanges(changes: SimpleChanges) {
+
+        this.tab = 'CHITIETBENH';
+
+
     }
 
 }

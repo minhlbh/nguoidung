@@ -38,6 +38,10 @@ a {
     cursor: pointer;
     color: black;
 }
+a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover
+{
+    color: rgb(0, 119, 154);
+}
 a:hover {
     color: rgb(0, 119, 154);
 }

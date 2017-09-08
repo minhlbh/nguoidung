@@ -23,13 +23,13 @@ export class ThongTinComponent implements OnInit, OnChanges {
 
         this.trieuChungService.TinFromBenhID(this.BenhID).subscribe(
             data => {
-                console.log(data);
+                // console.log(data);
                 // this.loading = false;
                 this.testdata = data;
             },
             error => {
                 this.testdata = error.Message;
-                console.log(error);
+                // console.log(error);
             }
         );
 

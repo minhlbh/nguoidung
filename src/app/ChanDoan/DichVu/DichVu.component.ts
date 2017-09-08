@@ -24,13 +24,13 @@ export class DichVuComponent implements OnInit, OnChanges {
 
         this.trieuChungService.DichVuFromBenhID(this.BenhID).subscribe(
             data => {
-                console.log(data);
+                // console.log(data);
                 this.loading = false;
                 this.testdata = data;
             },
             error => {
                 this.testdata = error.Message;
-                console.log(error);
+                // console.log(error);
                 this.loading = false;
             }
         );

@@ -1,6 +1,8 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Inject } from '@angular/core';
 import { TrieuChungService } from '../../Services/TrieuChung.service';
 import { Benh } from '../../Share/Model';
+import { DOCUMENT} from '@angular/common';
+import { PageScrollConfig, PageScrollService, PageScrollInstance } from 'ng2-page-scroll';
 
 
 @Component({
@@ -16,8 +18,8 @@ export class ChiTietComponent implements OnInit, OnChanges {
     loading = true;
 
     constructor(
-        private trieuChungService: TrieuChungService
-
+        private trieuChungService: TrieuChungService,
+        private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any
     ) { }
 
     ngOnInit() {
@@ -28,13 +30,16 @@ export class ChiTietComponent implements OnInit, OnChanges {
 
         this.trieuChungService.ChiTietBenhFromID(this.BenhID).subscribe(
             data => {
-                console.log(data);
+                // console.log(data);
                 this.loading = false;
                 this.benh = data;
+                const pageScrollInstance: PageScrollInstance = PageScrollInstance.newInstance(
+                    {document: this.document, scrollTarget: '#Part', verticalScrolling: false}
+                );
+                this.pageScrollService.start(pageScrollInstance);
             },
             error => {
-                // this.testdata = error.Message;
-                console.log(error);
+                // console.log(error);
                 this.loading = false;
             }
         );

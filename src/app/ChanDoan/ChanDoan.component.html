@@ -83,7 +83,8 @@
                         <div class="progress-bar" role="progressbar" [style.width.%]="benh.Score" [attr.aria-valuenow]="benh.Score" aria-valuemin="0"
                             aria-valuemax="100"></div>
                     </div>
-                    <span class="custom-control-description col-10"><a (click)="onShowBenh(benh)" pageScroll href="#awesomePart" [pageScrollDuration]="500">{{ benh.Name}}</a></span>
+                    <!-- pageScroll href="#awesomePart" [pageScrollDuration]="500" -->
+                    <span class="custom-control-description col-10"><a (click)="onShowBenh(benh)">{{ benh.Name}}</a></span>
                     <!-- </label> -->
                 </li>
             </ul>
@@ -96,4 +97,5 @@
         <img class="next_arr hide-md" src="assets/icons/next.svg" alt="">
     </div>
 </div>
+
 <app-ketqua [benh]="benh"></app-ketqua>
