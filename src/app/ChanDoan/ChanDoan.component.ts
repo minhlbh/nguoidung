@@ -91,17 +91,27 @@ export class ChanDoanComponent implements OnInit {
         this.onClearAll();
     }
     onSearchTrieuChung(keyword) {
-
+        console.log('select');
         if (keyword) {
             this.loading_dsTrieuChung = true;
             this.trieuChungService.DSTrieuChung(keyword).subscribe(data => {
                 console.log(data);
-                this.dsTrieuChung = data;
-                this.dsTrieuChungCount = data.length;
-                this.loading_dsTrieuChung = false;
+                if (data.length === 1) {
+                    this.dsTrieuChungSelected.push(data[0]);
+                    this.loading_dsTrieuChung = false;
+                    this.onTimBenh();
+                } else {
+                    this.dsTrieuChung = data;
+                    this.dsTrieuChungCount = data.length;
+                    this.loading_dsTrieuChung = false;
+                }
+
             });
         }
 
+    }
+    customCallback(e) {
+        console.log('cus', e);
     }
 
     onAddTrieuChung(trieuChung: TrieuChung) {
@@ -130,8 +140,30 @@ export class ChanDoanComponent implements OnInit {
         // this.buildTrieuChung
         this.trieuChungService.BenhFromTrieuChung(this.buildTrieuChung()).subscribe(
             data => {
-                console.log(data);
                 this.dsBenh = data;
+                console.log(this.dsBenh);
+                // var sort = [];
+                this.dsBenh.forEach(b => {
+                    b.Score = 0;
+                    this.dsTrieuChungSelected.forEach(tr => {
+                        if (JSON.stringify(b.DsTrieuChung.Value).indexOf(tr._id) !== -1) {
+                            b.Score += 1;
+                        }
+                    });
+                    b.Score = (b.Score / b.DsTrieuChung.Value.length) * 90;
+                });
+
+                this.dsBenh = this.dsBenh.sort((obj1, obj2) => {
+                    if (obj1.Score < obj2.Score) {
+                        return 1;
+                    }
+                    if (obj1.Score > obj2.Score) {
+                        return -1;
+                    }
+                    return 0;
+                });
+                console.log(this.dsBenh);
+
             },
             error => {
                 console.log(error);

@@ -1,4 +1,3 @@
-
 <div class="row justify-content-md-center">
     <div class="search_container col-md-8 col-sm-12">
         <div class="search_field">
@@ -7,19 +6,11 @@
             <!-- [formControl]="searchKey" -->
             <svg [@fadeInOut] *ngIf="loading_autocomplate" class="spinner icon-end" width="10px" height="10px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
                 <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-             </svg>
+            </svg>
 
-            <input type="text" class="search form-control form-control-lg" placeholder="Thêm triệu chứng bệnh"
-
-                ngui-auto-complete
-                [formControl]="searchKey"
-                [source]="observableSource"
-                [list-formatter]="autocompleListFormatter"
-                display-property-name="Name"
-                max-num-list="5"
-                min-chars="1"
-                (valueChanged)="onSearchTrieuChung($event)"
-            />
+            <input type="text" class="search form-control form-control-lg" placeholder="Thêm triệu chứng bệnh" ngui-auto-complete [formControl]="searchKey"
+                [source]="observableSource" [list-formatter]="autocompleListFormatter" display-property-name="Name" max-num-list="5"
+                min-chars="1" (valueChanged)="onSearchTrieuChung($event)"/>
         </div>
     </div>
 </div>
@@ -30,12 +21,13 @@
         </div>
         <div class="col-content">
             <div [@fadeInOut] *ngIf="loading_dsTrieuChung" class="loading_ds">
-                    <svg  class="spinner" width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-                     </svg>
+                <svg class="spinner" width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                </svg>
             </div>
             <ul *ngIf="dsTrieuChung.length > 0 && !loading_dsTrieuChung; else tcEmpty">
                 <li *ngFor="let trieuchung of dsTrieuChung">
+
                     <label class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" (change)="onAddTrieuChung(trieuchung)">
                         <span class="custom-control-indicator"></span>
@@ -82,12 +74,17 @@
         </div>
         <div class="col-content last">
             <ul *ngIf="dsBenh.length > 0 ; else bEmpty">
-                <li *ngFor="let benh of dsBenh">
-                    <label class="custom-control custom-checkbox" (click)="onShowBenh(benh)" pageScroll href="#awesomePart" [pageScrollDuration]="500">
-                        <input type="checkbox" checked="checked" class="custom-control-input" >
-                        <span class="custom-control-indicator"></span>
-                        <span  class="custom-control-description">{{ benh.Name}}</span>
-                    </label>
+                <li *ngFor="let benh of dsBenh" class="row" style="margin-bottom:3px;">
+
+                    <!-- <label class="custom-control custom-checkbox" (click)="onShowBenh(benh)" pageScroll href="#awesomePart" [pageScrollDuration]="500"> -->
+                    <!-- <input type="checkbox" checked="checked" class="custom-control-input" > -->
+                    <!-- <span class="custom-control-indicator"></span> -->
+                    <div class="progress col-2" style="width:30px; height:10px; margin-top:6px">
+                        <div class="progress-bar" role="progressbar" [style.width.%]="benh.Score" [attr.aria-valuenow]="benh.Score" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                    </div>
+                    <span class="custom-control-description col-10">{{ benh.Name}}</span>
+                    <!-- </label> -->
                 </li>
             </ul>
             <ng-template #bEmpty>
@@ -99,5 +96,4 @@
         <img class="next_arr hide-md" src="assets/icons/next.svg" alt="">
     </div>
 </div>
-<app-ketqua [benh]="benh" ></app-ketqua>
-
+<app-ketqua [benh]="benh"></app-ketqua>
