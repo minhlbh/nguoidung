@@ -99,6 +99,7 @@ export class ChanDoanComponent implements OnInit {
                 if (data.length === 1) {
                     this.dsTrieuChungSelected.push(data[0]);
                     this.loading_dsTrieuChung = false;
+                    this.searchKey.patchValue('');
                     this.onTimBenh();
                 } else {
                     this.dsTrieuChung = data;
