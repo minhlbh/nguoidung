@@ -91,16 +91,20 @@ export class ChanDoanComponent implements OnInit {
         this.onClearAll();
     }
     onSearchTrieuChung(keyword) {
-        console.log('select');
+        // console.log(keyword);
         if (keyword) {
             this.loading_dsTrieuChung = true;
             this.trieuChungService.DSTrieuChung(keyword).subscribe(data => {
-                console.log(data);
-                if (data.length === 1) {
-
+                // console.log(data);
+                if (data.length === 1 || data[0]._id === keyword._id) {
                     this.onAddTrieuChung(data[0]);
                     this.loading_dsTrieuChung = false;
                     this.searchKey.patchValue('');
+
+
+                    this.dsTrieuChung = data;
+                    this.dsTrieuChung.splice(0, 1);
+
 
                 } else {
                     this.dsTrieuChung = data;
@@ -149,7 +153,7 @@ export class ChanDoanComponent implements OnInit {
         this.trieuChungService.BenhFromTrieuChung(this.buildTrieuChung()).subscribe(
             data => {
                 this.dsBenh = data;
-                console.log(this.dsBenh);
+                // console.log(this.dsBenh);
                 // var sort = [];
                 this.dsBenh.forEach(b => {
                     b.Score = 0;
@@ -170,11 +174,11 @@ export class ChanDoanComponent implements OnInit {
                     }
                     return 0;
                 });
-                console.log(this.dsBenh);
+                // console.log(this.dsBenh);
 
             },
             error => {
-                console.log(error);
+                // console.log(error);
                 this.dsBenh = [];
             }
         );
