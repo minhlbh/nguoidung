@@ -97,10 +97,11 @@ export class ChanDoanComponent implements OnInit {
             this.trieuChungService.DSTrieuChung(keyword).subscribe(data => {
                 console.log(data);
                 if (data.length === 1) {
-                    this.dsTrieuChungSelected.push(data[0]);
+
+                    this.onAddTrieuChung(data[0]);
                     this.loading_dsTrieuChung = false;
                     this.searchKey.patchValue('');
-                    this.onTimBenh();
+
                 } else {
                     this.dsTrieuChung = data;
                     this.dsTrieuChungCount = data.length;
@@ -108,19 +109,26 @@ export class ChanDoanComponent implements OnInit {
                 }
 
             });
+
         }
 
-    }
-    customCallback(e) {
-        console.log('cus', e);
     }
 
     onAddTrieuChung(trieuChung: TrieuChung) {
         const i = this.dsTrieuChung.indexOf(trieuChung);
         this.dsTrieuChung.splice(i, 1);
         this.dsTrieuChungSelected = [...this.dsTrieuChungSelected, trieuChung];
+        const flags = new Set();
+        this.dsTrieuChungSelected = this.dsTrieuChungSelected.filter(entry => {
+            if (flags.has(entry._id)) {
+                return false;
+            }
+            flags.add(entry._id);
+            return true;
+        });
         this.onTimBenh();
     }
+
     onRemoveTrieuChung(trieuChung: TrieuChung) {
         const i = this.dsTrieuChungSelected.indexOf(trieuChung);
         this.dsTrieuChungSelected.splice(i, 1);
@@ -130,7 +138,6 @@ export class ChanDoanComponent implements OnInit {
 
     buildTrieuChung() {
         let icds = [];
-        // console.log(this.dsTrieuChungSelected);
         this.dsTrieuChungSelected.forEach((icd, i) => {
             icds = [...icds, icd._id];
         });

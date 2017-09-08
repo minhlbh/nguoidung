@@ -83,7 +83,7 @@
                         <div class="progress-bar" role="progressbar" [style.width.%]="benh.Score" [attr.aria-valuenow]="benh.Score" aria-valuemin="0"
                             aria-valuemax="100"></div>
                     </div>
-                    <span class="custom-control-description col-10">{{ benh.Name}}</span>
+                    <span class="custom-control-description col-10"><a (click)="onShowBenh(benh)" pageScroll href="#awesomePart" [pageScrollDuration]="500">{{ benh.Name}}</a></span>
                     <!-- </label> -->
                 </li>
             </ul>
