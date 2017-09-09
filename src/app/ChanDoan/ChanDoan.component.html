@@ -28,7 +28,7 @@
             <ul *ngIf="dsTrieuChung.length > 0 && !loading_dsTrieuChung; else tcEmpty">
                 <li *ngFor="let trieuchung of dsTrieuChung">
 
-                    <label class="custom-control custom-checkbox">
+                    <label class="custom-control custom-checkbox" title="{{trieuchung.Name}}">
                         <input type="checkbox" class="custom-control-input" (change)="onAddTrieuChung(trieuchung)">
                         <span class="custom-control-indicator"></span>
                         <span  class="custom-control-description">{{ trieuchung.Name}}</span>
@@ -53,11 +53,11 @@
         <div class="col-content">
             <ul *ngIf="dsTrieuChungSelected.length > 0 ; else tcsEmpty">
                 <li *ngFor="let trieuchungs of dsTrieuChungSelected">
-                    <label class="custom-control custom-checkbox">
-                                <input type="checkbox" checked="checked" class="custom-control-input" (change)="onRemoveTrieuChung(trieuchungs)">
-                                <span class="custom-control-indicator"></span>
-                                <span  class="custom-control-description">{{ trieuchungs.Name }}</span>
-                            </label>
+                    <label class="custom-control custom-checkbox" title="{{trieuchungs.Name}}">
+                        <input type="checkbox" checked="checked" class="custom-control-input" (change)="onRemoveTrieuChung(trieuchungs)">
+                        <span class="custom-control-indicator"></span>
+                        <span  class="custom-control-description">{{ trieuchungs.Name }}</span>
+                    </label>
                 </li>
             </ul>
             <ng-template #tcsEmpty>
@@ -78,8 +78,8 @@
                     <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
                 </svg>
             </div>
-            <ul *ngIf="dsBenh.length > 0  && !loading_dsBenh; else bEmpty">
-                <li *ngFor="let benh of dsBenh" class="row" style="margin-bottom:3px;">
+            <ul *ngIf="dsBenh.length > 0  && !loading_dsBenh; else bEmpty" >
+                <li *ngFor="let benh of dsBenh" class="row" style="margin-bottom:3px;" title="{{ benh.Name}}">
 
                     <!-- <label class="custom-control custom-checkbox" (click)="onShowBenh(benh)" pageScroll href="#awesomePart" [pageScrollDuration]="500"> -->
                     <!-- <input type="checkbox" checked="checked" class="custom-control-input" > -->

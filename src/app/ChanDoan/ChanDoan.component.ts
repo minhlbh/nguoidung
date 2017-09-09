@@ -57,8 +57,8 @@ export class ChanDoanComponent implements OnInit {
     }
 
     observableSource = (keyword: any): Observable<any[]> => {
-        const url: string =
-            'http://api.truongkhoa.com/api/CSDLYT/SearchTrieuChung?term=' + keyword;
+
+        const url = `http://api.truongkhoa.com/api/CSDLYT/SearchTrieuChung?term=${keyword}`;
 
         if (keyword) {
             this.loading_autocomplate = true;
@@ -92,7 +92,7 @@ export class ChanDoanComponent implements OnInit {
         this.onClearAll();
     }
     onSearchTrieuChung(keyword) {
-        // console.log(keyword);
+        console.log(keyword);
         if (keyword) {
             this.loading_dsTrieuChung = true;
             this.trieuChungService.DSTrieuChung(keyword).subscribe(data => {
@@ -193,5 +193,10 @@ export class ChanDoanComponent implements OnInit {
     onShowBenh(benh: Benh) {
         this.benh = benh;
     }
+    // onScroll(e) {
+    //     const tracker = e.target;
+    //     console.log(window.scrollY, tracker.querySelector('ul').getBoundingClientRect().top); // querySelector('ul')
+
+    // }
 
 }
