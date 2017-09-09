@@ -34,6 +34,7 @@ export class ChanDoanComponent implements OnInit {
     searchKey = new FormControl('');
     loading_autocomplate = false;
     loading_dsTrieuChung = false;
+    loading_dsBenh = false;
     benh = <Benh>{};
 
     constructor(
@@ -150,11 +151,15 @@ export class ChanDoanComponent implements OnInit {
 
     onTimBenh() {
         // this.buildTrieuChung
+        if (this.dsTrieuChungSelected.length === 0) {
+            this.dsBenh = [];
+            return;
+        }
+
+        this.loading_dsBenh = true;
         this.trieuChungService.BenhFromTrieuChung(this.buildTrieuChung()).subscribe(
             data => {
                 this.dsBenh = data;
-                // console.log(this.dsBenh);
-                // var sort = [];
                 this.dsBenh.forEach(b => {
                     b.Score = 0;
                     this.dsTrieuChungSelected.forEach(tr => {
@@ -163,6 +168,7 @@ export class ChanDoanComponent implements OnInit {
                         }
                     });
                     b.Score = (b.Score / b.DsTrieuChung.Value.length) * 90;
+                    this.loading_dsBenh = false;
                 });
 
                 this.dsBenh = this.dsBenh.sort((obj1, obj2) => {
@@ -179,6 +185,7 @@ export class ChanDoanComponent implements OnInit {
             },
             error => {
                 // console.log(error);
+                this.loading_dsBenh = false;
                 this.dsBenh = [];
             }
         );

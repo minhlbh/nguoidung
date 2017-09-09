@@ -35,12 +35,18 @@
 }
 
 .content .col-content {
-    min-height: 120px;
+    /* min-height: 120px; */
+    margin-top: 10px;
     border-right: solid 1px rgba(134, 186, 203, 0.53);
-    max-height: 200px;
+    height: 150px;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+::-moz-scrollbars {display:none;}
 
 .content .col-content.last {
     /* min-height: 140px; */
@@ -54,7 +60,7 @@
 }
 
 .col-content .empty {
-    padding: 20px 10px 0 0;
+    padding: 40px 10px 0 0;
     text-align: justify;
     text-justify: inter-word;
     font-size: 12px;

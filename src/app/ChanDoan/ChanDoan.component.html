@@ -10,7 +10,7 @@
 
             <input type="text" class="search form-control form-control-lg" placeholder="Thêm triệu chứng bệnh" ngui-auto-complete [formControl]="searchKey"
                 [source]="observableSource" [list-formatter]="autocompleListFormatter" display-property-name="Name" max-num-list="5"
-                min-chars="1" (valueChanged)="onSearchTrieuChung($event)"/>
+                min-chars="1" (valueChanged)="onSearchTrieuChung($event)" />
         </div>
     </div>
 </div>
@@ -73,7 +73,12 @@
             Các bệnh liên quan có thông tin <span class="badge badge-danger">{{ dsBenh.length}}</span>
         </div>
         <div class="col-content last">
-            <ul *ngIf="dsBenh.length > 0 ; else bEmpty">
+            <div [@fadeInOut] *ngIf="loading_dsBenh" class="loading_ds">
+                <svg class="spinner" width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                </svg>
+            </div>
+            <ul *ngIf="dsBenh.length > 0  && !loading_dsBenh; else bEmpty">
                 <li *ngFor="let benh of dsBenh" class="row" style="margin-bottom:3px;">
 
                     <!-- <label class="custom-control custom-checkbox" (click)="onShowBenh(benh)" pageScroll href="#awesomePart" [pageScrollDuration]="500"> -->
@@ -89,7 +94,7 @@
                 </li>
             </ul>
             <ng-template #bEmpty>
-                <div class="empty">
+                <div class="empty" *ngIf="!loading_dsBenh">
                     Các bệnh liên quan sẽ hiện ra theo triệu chứng đã chọn
                 </div>
             </ng-template>
