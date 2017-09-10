@@ -9,9 +9,10 @@ import { AppComponent } from './app.component';
 
 
 const routes: Routes = [
-    { path: '', loadChildren: './ChanDoan/ChanDoan.module#ChanDoanModule' }
+    { path: '', loadChildren: './ChanDoan/ChanDoan.module#ChanDoanModule' },
+    { path: 'bacsy', loadChildren: './BacSy/BacSy.module#BacSyModule' }
 ];
-const Routing: ModuleWithProviders = RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, useHash: true });
+const Routing: ModuleWithProviders = RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, useHash: false });
 
 
 @NgModule({

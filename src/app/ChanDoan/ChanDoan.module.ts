@@ -11,7 +11,7 @@ import { KetQuaComponent } from './KetQua/KetQua.component';
 import { NgSwitch, NgSwitchCase } from '@angular/common';
 import { NguiStickyModule } from '@ngui/sticky';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
-import {StickyModule} from 'ng2-sticky-kit';
+import { StickyModule } from 'ng2-sticky-kit';
 
 // import { TruncatePipe } from 'angular2-truncate';
 import { ThongTinComponent } from './ThongTin/ThongTin.component';

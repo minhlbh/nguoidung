@@ -1,3 +1,23 @@
+
+<div class="container">
+    <div class="row justify-content-end">
+        <div class="line_menu">
+            <ul>
+                <li>
+                    <a href="#">Từ điển bệnh</a>
+                </li>
+                <li>
+                    <a href="#">Thuốc</a>
+                </li>
+                <li>
+                    <a href="#">Cơ ở y tế</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- <router-outlet></router-outlet> -->
+
+
 <div class="row justify-content-md-center">
     <div class="search_container col-md-8 col-sm-12">
         <div class="search_field">
@@ -73,26 +93,35 @@
             Các bệnh liên quan có thông tin <span class="badge badge-danger">{{ dsBenh.length}}</span>
         </div>
         <div class="col-content last">
+
             <div [@fadeInOut] *ngIf="loading_dsBenh" class="loading_ds">
                 <svg class="spinner" width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
                     <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
                 </svg>
             </div>
-            <ul *ngIf="dsBenh.length > 0  && !loading_dsBenh; else bEmpty" >
-                <li *ngFor="let benh of dsBenh" class="row" style="margin-bottom:3px;" title="{{ benh.Name}}">
+            <div class="result">
+                <ul *ngIf="dsBenh.length > 0  && !loading_dsBenh; else bEmpty" >
+                    <li *ngFor="let benh of dsBenh"  style="margin-bottom:3px;" title="{{ benh.Name}}">
+                        <div class="row">
+                        <!-- <label class="custom-control custom-checkbox" (click)="onShowBenh(benh)" pageScroll href="#awesomePart" [pageScrollDuration]="500"> -->
+                        <!-- <input type="checkbox" checked="checked" class="custom-control-input" > -->
+                        <!-- <span class="custom-control-indicator"></span> -->
+                        <div class="progress col-3" style="height:10px; margin-top:6px">
 
-                    <!-- <label class="custom-control custom-checkbox" (click)="onShowBenh(benh)" pageScroll href="#awesomePart" [pageScrollDuration]="500"> -->
-                    <!-- <input type="checkbox" checked="checked" class="custom-control-input" > -->
-                    <!-- <span class="custom-control-indicator"></span> -->
-                    <div class="progress col-2" style="width:30px; height:10px; margin-top:6px">
-                        <div class="progress-bar" role="progressbar" [style.width.%]="benh.Score" [attr.aria-valuenow]="benh.Score" aria-valuemin="0"
-                            aria-valuemax="100"></div>
+                            <div class="progress-bar " role="progressbar" [style.width.%]="benh.Score" [attr.aria-valuenow]="benh.Score" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+
+                        </div>
+                        <!-- pageScroll href="#awesomePart" [pageScrollDuration]="500" -->
+                        <div class="col-9">
+                        <span class="custom-control-description"><a (click)="onShowBenh(benh)">{{ benh.Name}}</a></span>
+                        </div>
+
+                        <!-- </label> -->
                     </div>
-                    <!-- pageScroll href="#awesomePart" [pageScrollDuration]="500" -->
-                    <span class="custom-control-description col-10"><a (click)="onShowBenh(benh)">{{ benh.Name}}</a></span>
-                    <!-- </label> -->
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            </div>
             <ng-template #bEmpty>
                 <div class="empty" *ngIf="!loading_dsBenh">
                     Các bệnh liên quan sẽ hiện ra theo triệu chứng đã chọn
@@ -104,3 +133,4 @@
 </div>
 
 <app-ketqua [benh]="benh"></app-ketqua>
+</div>
