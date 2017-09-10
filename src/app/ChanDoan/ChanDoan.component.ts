@@ -3,10 +3,10 @@ import { TrieuChungService } from '../Services/TrieuChung.service';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { style, state, animate, transition, trigger } from '@angular/core';
+import { style, state, animate, transition, trigger, group } from '@angular/core';
 import { Benh, TrieuChung } from '../Share/Model';
 import { PageScrollConfig } from 'ng2-page-scroll';
-
+import StringHelper from '../Helper/String';
 import { Observable } from 'rxjs/Observable';
 import * as CryptoJS from 'crypto-js';
 
@@ -22,6 +22,17 @@ import * as CryptoJS from 'crypto-js';
             ]),
             transition(':leave', [   // :leave is alias to '* => void'
                 animate(50, style({ opacity: 0 }))
+            ])
+        ]),
+        trigger('new', [
+            transition(':enter', [   // :enter is alias to 'void => *'
+                style({ opacity: 0}),
+                animate(50, style({ opacity: 1  })),
+                group([
+                    animate(50, style({ opacity: 1 , backgroundColor: '#cfd8dc' })),
+                    animate('.5s .5s ease', style({ backgroundColor: '#cfd8dc' })),
+                    // animate(500, style({ backgroundColor: 'transparent' }))
+                ])
             ])
         ])
     ]
@@ -41,7 +52,8 @@ export class ChanDoanComponent implements OnInit {
     constructor(
         private trieuChungService: TrieuChungService,
         private _sanitizer: DomSanitizer,
-        public http: Http
+        public http: Http,
+        // private stringHelper: StringHelper
     ) {
         PageScrollConfig.defaultScrollOffset = 12;
         PageScrollConfig.defaultEasingLogic = {
@@ -81,7 +93,7 @@ export class ChanDoanComponent implements OnInit {
 
 
     ngOnInit() {
-        const ob = {'a': 'b'};
+        const ob = { 'a': 'b' };
         // Encrypt the Passwort with Base64
         const password = 'HackersSeeIT';
         const iv = CryptoJS.enc.Base64.parse('#base64IV#');
@@ -92,17 +104,6 @@ export class ChanDoanComponent implements OnInit {
 
     }
 
-    bodauTiengViet(str) {
-        str = str.toLowerCase();
-        str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a');
-        str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, 'e');
-        str = str.replace(/ì|í|ị|ỉ|ĩ/g, 'i');
-        str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, 'o');
-        str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, 'u');
-        str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, 'y');
-        str = str.replace(/đ/g, 'd');
-        return str;
-    }
     onClearAll() {
         this.dsTrieuChung = [];
         this.dsTrieuChungCount = 0;
@@ -130,7 +131,10 @@ export class ChanDoanComponent implements OnInit {
                     this.dsTrieuChungCount = data.length;
                     this.loading_dsTrieuChung = false;
                     this.dsTrieuChung.forEach(tc => {
-                        if (this.bodauTiengViet(tc.Name).toLowerCase() === this.bodauTiengViet(keyword).toLowerCase()) {
+                        if (
+                            // tslint:disable-next-line:max-line-length
+                            StringHelper.bodauTiengViet(tc.Name).toLowerCase() === StringHelper.bodauTiengViet(keyword).toLowerCase()
+                        ) {
                             console.log(tc);
                             this.searchKey.patchValue('');
                             this.dsTrieuChung.splice(this.dsTrieuChung.indexOf(tc), 1);

@@ -464,6 +464,7 @@ input.form-control:focus {
         overflow-x: scroll;
         -webkit-overflow-scrolling: touch;
         -ms-overflow-style: none;
+
     }
     .tabs .tabs_header ul::-webkit-scrollbar {
         display: none;

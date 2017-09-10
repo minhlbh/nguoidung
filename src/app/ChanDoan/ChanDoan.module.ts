@@ -17,6 +17,7 @@ import { StickyModule } from 'ng2-sticky-kit';
 import { ThongTinComponent } from './ThongTin/ThongTin.component';
 import { KinhNghiemComponent } from './KinhNghiem/KinhNghiem.component';
 import { DichVuComponent } from './DichVu/DichVu.component';
+// import { StringHelper } from '../Helper/String';
 
 // Định nghĩa router riêng cho module này
 const routing: Routes = [
@@ -38,7 +39,8 @@ const Routing: ModuleWithProviders = RouterModule.forChild(routing);
     providers: [
         TrieuChungService,
         NgSwitch,
-        NgSwitchCase
+        NgSwitchCase,
+        // StringHelper
     ],
     declarations: [
         ChanDoanComponent,

@@ -114,7 +114,7 @@
                         </div>
                         <!-- pageScroll href="#awesomePart" [pageScrollDuration]="500" -->
                         <div class="col-9">
-                        <span class="custom-control-description"><a (click)="onShowBenh(benh)">{{ benh.Name}}</a></span>
+                        <span class="custom-control-description"><a (click)="onShowBenh(benh)" pageScroll href="#ketqua" [pageScrollDuration]="500">{{ benh.Name}}</a></span>
                         </div>
 
                         <!-- </label> -->
@@ -132,5 +132,5 @@
     </div>
 </div>
 
-<app-ketqua [benh]="benh"></app-ketqua>
+<app-ketqua id="ketqua" [benh]="benh"></app-ketqua>
 </div>
