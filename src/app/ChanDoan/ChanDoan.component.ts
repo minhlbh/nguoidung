@@ -8,6 +8,7 @@ import { Benh, TrieuChung } from '../Share/Model';
 import { PageScrollConfig } from 'ng2-page-scroll';
 
 import { Observable } from 'rxjs/Observable';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
     selector: 'app-chandoan',
@@ -80,8 +81,17 @@ export class ChanDoanComponent implements OnInit {
 
 
     ngOnInit() {
+        const ob = {'a': 'b'};
+        // Encrypt the Passwort with Base64
+        const password = 'HackersSeeIT';
+        const iv = CryptoJS.enc.Base64.parse('#base64IV#');
+        const encrypted = CryptoJS.AES.encrypt(JSON.stringify(ob), password);
+        const v = encrypted.toString();
+        console.log(v);
+        console.log(CryptoJS.AES.decrypt(v, password).toString(CryptoJS.enc.Utf8));
 
     }
+
     bodauTiengViet(str) {
         str = str.toLowerCase();
         str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a');
