@@ -23,7 +23,8 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
-  minScrollbarLength: 30
+  minScrollbarLength: 30,
+  wheelPropagation: true
 };
 // Định nghĩa router riêng cho module này
 const routing: Routes = [
