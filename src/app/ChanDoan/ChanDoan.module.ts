@@ -18,7 +18,12 @@ import { ThongTinComponent } from './ThongTin/ThongTin.component';
 import { KinhNghiemComponent } from './KinhNghiem/KinhNghiem.component';
 import { DichVuComponent } from './DichVu/DichVu.component';
 // import { StringHelper } from '../Helper/String';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
+const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 // Định nghĩa router riêng cho module này
 const routing: Routes = [
     { path: '', component: ChanDoanComponent }
@@ -34,7 +39,8 @@ const Routing: ModuleWithProviders = RouterModule.forChild(routing);
         NguiAutoCompleteModule,
         NguiStickyModule,
         Ng2PageScrollModule,
-        StickyModule
+        StickyModule,
+        PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG)
     ],
     providers: [
         TrieuChungService,

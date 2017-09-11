@@ -1,4 +1,3 @@
-
 <div class="container">
     <div class="row justify-content-end">
         <div class="line_menu">
@@ -18,119 +17,122 @@
     <!-- <router-outlet></router-outlet> -->
 
 
-<div class="row justify-content-md-center">
-    <div class="search_container col-md-8 col-sm-12">
-        <div class="search_field">
-            <img class="icon" src="assets/icons/search-icon.svg">
-            <img [@fadeInOut] *ngIf="searchKey.value && !loading_autocomplate" class="icon-end" src="assets/icons/cancel.svg" (click)="onClearSearch()">
-            <!-- [formControl]="searchKey" -->
-            <svg [@fadeInOut] *ngIf="loading_autocomplate" class="spinner icon-end" width="10px" height="10px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-            </svg>
-
-            <input type="text" class="search form-control form-control-lg" placeholder="Thêm triệu chứng" ngui-auto-complete [formControl]="searchKey"
-                [source]="observableSource" [list-formatter]="autocompleListFormatter" display-property-name="Name" max-num-list="5"
-                min-chars="1" (valueChanged)="onSearchTrieuChung($event)" />
-        </div>
-    </div>
-</div>
-<div class="row justify-content-md-center content">
-    <div class="col-lg-3 col-md-4 col-block h-100">
-        <div class="col-header">
-            Danh sách triệu chứng <span class="badge badge-danger">{{dsTrieuChung.length}}</span>
-        </div>
-        <div class="col-content">
-            <div [@fadeInOut] *ngIf="loading_dsTrieuChung" class="loading_ds">
-                <svg class="spinner" width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+    <div class="row justify-content-md-center">
+        <div class="search_container col-md-8 col-sm-12">
+            <div class="search_field">
+                <img class="icon" src="assets/icons/search-icon.svg">
+                <img [@fadeInOut] *ngIf="searchKey.value && !loading_autocomplate" class="icon-end" src="assets/icons/cancel.svg" (click)="onClearSearch()">
+                <!-- [formControl]="searchKey" -->
+                <svg [@fadeInOut] *ngIf="loading_autocomplate" class="spinner icon-end" width="10px" height="10px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
                     <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
                 </svg>
-            </div>
-            <ul *ngIf="dsTrieuChung.length > 0 && !loading_dsTrieuChung; else tcEmpty">
-                <li *ngFor="let trieuchung of dsTrieuChung">
 
-                    <label class="custom-control custom-checkbox" title="{{trieuchung.Name}}">
+                <input type="text" class="search form-control form-control-lg" placeholder="Thêm triệu chứng" ngui-auto-complete [formControl]="searchKey"
+                    [source]="observableSource" [list-formatter]="autocompleListFormatter" display-property-name="Name" max-num-list="5"
+                    min-chars="1" (valueChanged)="onSearchTrieuChung($event)" />
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-md-center content">
+        <div class="col-lg-3 col-md-4 col-block h-100">
+            <div class="col-header">
+                Danh sách triệu chứng <span class="badge badge-danger">{{dsTrieuChung.length}}</span>
+            </div>
+            <div class="col-content">
+                <div [@fadeInOut] *ngIf="loading_dsTrieuChung" class="loading_ds">
+                    <svg class="spinner" width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                    </svg>
+                </div>
+                <ul *ngIf="dsTrieuChung.length > 0 && !loading_dsTrieuChung; else tcEmpty">
+                    <li *ngFor="let trieuchung of dsTrieuChung">
+
+                        <label class="custom-control custom-checkbox" title="{{trieuchung.Name}}">
                         <input type="checkbox" class="custom-control-input" (change)="onAddTrieuChung(trieuchung)">
                         <span class="custom-control-indicator"></span>
                         <span  class="custom-control-description">{{ trieuchung.Name}}</span>
                     </label>
-                </li>
-            </ul>
-            <ng-template #tcEmpty>
-                <div class="empty" *ngIf="!loading_dsTrieuChung">
-                    Tìm kiếm triệu chứng bằng cách gõ từ khoá vào ô tìm triệu chứng
-                </div>
-            </ng-template>
+                    </li>
+                </ul>
+                <ng-template #tcEmpty>
+                    <div class="empty" *ngIf="!loading_dsTrieuChung">
+                        Tìm kiếm triệu chứng bằng cách gõ từ khoá vào ô tìm triệu chứng
+                    </div>
+                </ng-template>
+
+            </div>
+            <img class="next_arr" src="assets/icons/next.svg" alt="">
 
         </div>
-        <img class="next_arr" src="assets/icons/next.svg" alt="">
 
-    </div>
-
-    <div class="col-lg-3 col-md-4 h-100 col-block">
-        <div class="col-header">
-            Triệu chứng đã chọn <span class="badge badge-danger">{{dsTrieuChungSelected.length}}</span>
-        </div>
-        <div class="col-content">
-            <ul *ngIf="dsTrieuChungSelected.length > 0 ; else tcsEmpty">
-                <li *ngFor="let trieuchungs of dsTrieuChungSelected">
-                    <label class="custom-control custom-checkbox" title="{{trieuchungs.Name}}">
+        <div class="col-lg-3 col-md-4 h-100 col-block">
+            <div class="col-header">
+                Triệu chứng đã chọn <span class="badge badge-danger">{{dsTrieuChungSelected.length}}</span>
+            </div>
+            <div class="col-content">
+                <ul *ngIf="dsTrieuChungSelected.length > 0 ; else tcsEmpty">
+                    <li *ngFor="let trieuchungs of dsTrieuChungSelected">
+                        <label class="custom-control custom-checkbox" title="{{trieuchungs.Name}}">
                         <input type="checkbox" checked="checked" class="custom-control-input" (change)="onRemoveTrieuChung(trieuchungs)">
                         <span class="custom-control-indicator"></span>
                         <span  class="custom-control-description">{{ trieuchungs.Name }}</span>
                     </label>
-                </li>
-            </ul>
-            <ng-template #tcsEmpty>
-                <div class="empty">
-                    Chọn đúng triệu chứng mắc phải
-                </div>
-            </ng-template>
-        </div>
-        <img class="next_arr" src="assets/icons/next.svg" alt="">
-    </div>
-    <div class="col-lg-3 col-md-4 col-block h-100">
-        <div class="col-header">
-            Các bệnh liên quan có thông tin <span class="badge badge-danger">{{ dsBenh.length}}</span>
-        </div>
-        <div class="col-content last">
-
-            <div [@fadeInOut] *ngIf="loading_dsBenh" class="loading_ds">
-                <svg class="spinner" width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                    <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-                </svg>
-            </div>
-            <div class="result">
-                <ul *ngIf="dsBenh.length > 0  && !loading_dsBenh; else bEmpty" >
-                    <li *ngFor="let benh of dsBenh"  style="margin-bottom:3px;" title="{{ benh.Name}}">
-                        <div class="row">
-                        <!-- <label class="custom-control custom-checkbox" (click)="onShowBenh(benh)" pageScroll href="#awesomePart" [pageScrollDuration]="500"> -->
-                        <!-- <input type="checkbox" checked="checked" class="custom-control-input" > -->
-                        <!-- <span class="custom-control-indicator"></span> -->
-                        <div class="progress col-3" style="height:10px; margin-top:6px">
-
-                            <div class="progress-bar " role="progressbar" [style.width.%]="benh.Score" [attr.aria-valuenow]="benh.Score" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-
-                        </div>
-                        <!-- pageScroll href="#awesomePart" [pageScrollDuration]="500" -->
-                        <div class="col-9">
-                        <span class="custom-control-description"><a (click)="onShowBenh(benh)" pageScroll href="#ketqua" [pageScrollDuration]="500">{{ benh.Name}}</a></span>
-                        </div>
-
-                        <!-- </label> -->
-                    </div>
                     </li>
                 </ul>
+                <ng-template #tcsEmpty>
+                    <div class="empty">
+                        Chọn đúng triệu chứng mắc phải
+                    </div>
+                </ng-template>
             </div>
-            <ng-template #bEmpty>
-                <div class="empty" *ngIf="!loading_dsBenh">
-                    Các bệnh liên quan sẽ hiện ra theo triệu chứng đã chọn
-                </div>
-            </ng-template>
+            <img class="next_arr" src="assets/icons/next.svg" alt="">
         </div>
-        <img class="next_arr hide-md" src="assets/icons/next.svg" alt="">
-    </div>
-</div>
+        <div class="col-lg-3 col-md-4 col-block h-100">
+            <div class="col-header">
+                Các bệnh liên quan có thông tin <span class="badge badge-danger">{{ dsBenh.length}}</span>
+            </div>
+            <perfect-scrollbar class="col-content last">
 
-<app-ketqua id="ketqua" [benh]="benh"></app-ketqua>
+                <div [@fadeInOut] *ngIf="loading_dsBenh" class="loading_ds">
+                    <svg class="spinner" width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                    </svg>
+                </div>
+                <div class="result">
+                    <ul *ngIf="dsBenh.length > 0  && !loading_dsBenh; else bEmpty">
+                        <li *ngFor="let benh of dsBenh" style="margin-bottom:3px;" title="{{ benh.Name}}">
+                            <div class="row">
+                                <!-- <label class="custom-control custom-checkbox" (click)="onShowBenh(benh)" pageScroll href="#awesomePart" [pageScrollDuration]="500"> -->
+                                <!-- <input type="checkbox" checked="checked" class="custom-control-input" > -->
+                                <!-- <span class="custom-control-indicator"></span> -->
+                                <div class="progress col-3" style="height:10px; margin-top:6px">
+
+                                    <div class="progress-bar " role="progressbar" [style.width.%]="benh.Score" [attr.aria-valuenow]="benh.Score" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
+
+                                </div>
+                                <!-- pageScroll href="#awesomePart" [pageScrollDuration]="500" -->
+                                <div class="col-9">
+                                    <span class="custom-control-description"><a (click)="onShowBenh(benh)" pageScroll href="#ketqua" [pageScrollDuration]="500">{{ benh.Name}}</a></span>
+                                </div>
+
+                                <!-- </label> -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <ng-template #bEmpty>
+                    <div class="empty" *ngIf="!loading_dsBenh">
+                        Các bệnh liên quan sẽ hiện ra theo triệu chứng đã chọn
+                    </div>
+                </ng-template>
+            </perfect-scrollbar>
+            <img class="next_arr hide-md" src="assets/icons/next.svg" alt="">
+        </div>
+    </div>
+
+    <app-ketqua id="ketqua" [benh]="benh"></app-ketqua>
 </div>
+<perfect-scrollbar class="container" style="height:100px; overflow:scroll">
+    <div class="content" style="height:800px">Scrollable content</div>
+</perfect-scrollbar>
