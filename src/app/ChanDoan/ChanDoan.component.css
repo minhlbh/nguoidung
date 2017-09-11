@@ -107,7 +107,7 @@
 /* } */
 .loading_ds {
     position: absolute;
-    top: 50%;
+    top: 50px;
     left: 45%;
 }
 
@@ -121,6 +121,7 @@
     .content .col-content {
         border-right: none;
         border-left: solid 1px rgba(134, 186, 203, 0.53);
+        -webkit-overflow-scrolling: touch;
     }
     .content .col-content li{
         margin-left: 10px;
