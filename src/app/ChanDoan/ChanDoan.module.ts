@@ -8,7 +8,6 @@ import { TrieuChungService } from '../Services/TrieuChung.service';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { ChiTietComponent } from './ChiTiet/ChiTiet.component';
 import { KetQuaComponent } from './KetQua/KetQua.component';
-import { NgSwitch, NgSwitchCase } from '@angular/common';
 import { NguiStickyModule } from '@ngui/sticky';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { StickyModule } from 'ng2-sticky-kit';
@@ -17,15 +16,8 @@ import { StickyModule } from 'ng2-sticky-kit';
 import { ThongTinComponent } from './ThongTin/ThongTin.component';
 import { KinhNghiemComponent } from './KinhNghiem/KinhNghiem.component';
 import { DichVuComponent } from './DichVu/DichVu.component';
-// import { StringHelper } from '../Helper/String';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { ShareModule } from '../Share/Share.module';
 
-const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true,
-  minScrollbarLength: 30,
-  wheelPropagation: true
-};
 // Định nghĩa router riêng cho module này
 const routing: Routes = [
     { path: '', component: ChanDoanComponent }
@@ -42,13 +34,10 @@ const Routing: ModuleWithProviders = RouterModule.forChild(routing);
         NguiStickyModule,
         Ng2PageScrollModule,
         StickyModule,
-        PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG)
+        ShareModule
     ],
     providers: [
         TrieuChungService,
-        NgSwitch,
-        NgSwitchCase,
-        // StringHelper
     ],
     declarations: [
         ChanDoanComponent,
