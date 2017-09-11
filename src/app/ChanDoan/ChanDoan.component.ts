@@ -49,6 +49,7 @@ export class ChanDoanComponent implements OnInit {
     loading_dsBenh = false;
     benh = <Benh>{};
 
+
     constructor(
         private trieuChungService: TrieuChungService,
         private _sanitizer: DomSanitizer,
