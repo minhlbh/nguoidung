@@ -1,0 +1,103 @@
+<div class="container">
+    <div class="row justify-content-end">
+        <div class="line_menu">
+            <ul>
+                <li>
+                    <a class="selected">Từ điển bệnh</a>
+                </li>
+                <li>
+                    <a href="#">Thuốc</a>
+                </li>
+                <li>
+                    <a href="#">Cơ ở y tế</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- <router-outlet></router-outlet> -->
+
+    <!-- Search box -->
+    <div class="row justify-content-md-center">
+        <div class="search_container col-md-8 col-sm-12">
+            <div class="search_field">
+                <img class="icon" src="assets/icons/search-icon.svg">
+                <img [@fadeInOut] *ngIf="searchKey.value && !loading_autocomplate" class="icon-end" src="assets/icons/cancel.svg" (click)="onClearSearch()">
+                <!-- [formControl]="searchKey" -->
+                <svg [@fadeInOut] *ngIf="loading_autocomplate" class="spinner icon-end" width="10px" height="10px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                </svg>
+
+                <input type="text" class="search form-control form-control-lg" placeholder="Tìm kiếm bệnh" ngui-auto-complete [formControl]="searchKey"
+                    [source]="observableSource" [list-formatter]="autocompleListFormatter" display-property-name="Name" max-num-list="5"
+                    min-chars="2" (valueChanged)="onSearchBenh($event)" />
+            </div>
+        </div>
+    </div>
+    <!-- end Search box -->
+
+    <div class="row justify-content-md-center content">
+
+        <!-- Danh sach benh -->
+        <div class="col-lg-3 col-md-6 col-block h-100">
+            <div class="col-header">
+                Danh sách bệnh <span class="badge badge-danger">{{dsBenhCount}}</span>
+            </div>
+            <perfect-scrollbar class="col-content">
+                <div [@fadeInOut] *ngIf="loading_dsBenh" class="loading_ds">
+                    <svg class="spinner" width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                    </svg>
+                </div>
+                <ul *ngIf="dsBenh.length > 0 && !loading_dsBenh; else tcEmpty">
+                    <li *ngFor="let benh of dsBenh">
+                        <!-- <label class="custom-control custom-checkbox" title="{{benh.Name}}">
+                        <input type="checkbox" class="custom-control-input" (change)="onAddBenh(benh)">
+                        <span class="custom-control-indicator"></span>
+                        <span  class="custom-control-description">{{ benh.Name}}</span>
+                    </label> -->
+                        <a style="cursor: pointer;" (click)="onAddBenh(benh)">
+                            <span class="title" >{{benh.Name}}</span>
+                        </a>
+                    </li>
+                </ul>
+                <ng-template #tcEmpty>
+                    <div class="empty" *ngIf="!loading_dsBenh">
+                        Tìm kiếm bệnh bằng cách gõ từ khoá vào ô tìm bệnh
+                    </div>
+                </ng-template>
+
+            </perfect-scrollbar>
+            <img class="next_arr" src="assets/icons/next.svg" alt="">
+        </div>
+        <!-- end Danh sach benh -->
+
+        <!-- Cac benh da chon -->
+        <div class="col-lg-3 col-md-6 h-100 col-block">
+            <div class="col-header">
+                Bệnh đã chọn <span class="badge badge-danger">{{dsBenhSelected.length}}</span>
+            </div>
+            <perfect-scrollbar class="col-content">
+                <ul *ngIf="dsBenhSelected.length > 0 ; else tcsEmpty">
+                    <li *ngFor="let benh of dsBenhSelected">
+                        <!-- <label class="custom-control custom-checkbox" title="{{benh.Name}}">
+                        <input type="checkbox" checked="checked" class="custom-control-input" (change)="onRemoveBenh(benh)">
+                        <span class="custom-control-indicator"></span>
+                        <span  class="custom-control-description">{{ benh.Name }}</span>
+                    </label> -->
+                        <a style="cursor: pointer;" (click)="onRemoveBenh(benh)">
+                            <span class="title" >{{benh.Name}}</span>
+                        </a>
+                    </li>
+                </ul>
+                <ng-template #tcsEmpty>
+                    <div class="empty">
+                        Các bệnh đã chọn
+                    </div>
+                </ng-template>
+            </perfect-scrollbar>
+
+        </div>
+        <!-- end Cac benh da chon -->
+
+    </div>
+</div>

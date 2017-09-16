@@ -10,7 +10,8 @@ import { AppComponent } from './app.component';
 
 const routes: Routes = [
     { path: '', loadChildren: './ChanDoan/ChanDoan.module#ChanDoanModule' },
-    { path: 'bacsy', loadChildren: './BacSy/BacSy.module#BacSyModule' }
+    { path: 'bacsy', loadChildren: './BacSy/BacSy.module#BacSyModule' },
+    { path: 'tracuubenh', loadChildren: './Component/TraCuuBenh/TraCuuBenh.module#TraCuuBenhModule'}
 ];
 const Routing: ModuleWithProviders = RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, useHash: false });
 
