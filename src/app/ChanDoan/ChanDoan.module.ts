@@ -10,12 +10,7 @@ import { StickyModule } from 'ng2-sticky-kit';
 import { ShareModule } from '../Share/Share.module';
 
 // components
-import { ThongTinComponent } from './ThongTin/ThongTin.component';
-import { KinhNghiemComponent } from './KinhNghiem/KinhNghiem.component';
-import { DichVuComponent } from './DichVu/DichVu.component';
 import { ChanDoanComponent } from './ChanDoan.component';
-import { ChiTietComponent } from './ChiTiet/ChiTiet.component';
-import { KetQuaComponent } from './KetQua/KetQua.component';
 
 // pipe and services
 import { TrieuChungService } from '../Services/TrieuChung.service';
@@ -45,11 +40,7 @@ const Routing: ModuleWithProviders = RouterModule.forChild(routing);
     ],
     declarations: [
         ChanDoanComponent,
-        ChiTietComponent,
-        KetQuaComponent,
-        ThongTinComponent,
-        KinhNghiemComponent,
-        DichVuComponent
+
     ]
 })
 export class ChanDoanModule { }

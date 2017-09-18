@@ -38,15 +38,11 @@ import { BenhService } from '../../Services/Benh.service';
 export class TraCuuBenhComponent implements OnInit {
 
     dsBenh: Benh[] = [];
+    soBenhDaLoad = 0;
     dsBenhCount = 0;
-    dsBenhSelected: Benh[] = [];
-    dsBenhGoiY: Benh[] = [];
     searchKey = new FormControl('');
     loading = false;
-    // loading_dsBenh = false;
-    // loading_dsBenhGoiY = false;
     benh = <Benh>{};
-
 
     constructor(
         private benhService: BenhService,
@@ -68,7 +64,8 @@ export class TraCuuBenhComponent implements OnInit {
         };
 
         // load ds benh
-        this.benhService.DsBenh(50).subscribe(data => {
+        this.soBenhDaLoad = 50;
+        this.benhService.DsBenh(this.soBenhDaLoad).subscribe(data => {
             this.dsBenh = data.DsBenh;
             this.dsBenhCount = data.TongSoLuong;
         });
@@ -76,11 +73,11 @@ export class TraCuuBenhComponent implements OnInit {
 
     ngOnInit() { }
 
-    //
-    // ─── FUNCTION FOR SEARCH BOX ────────────────────────────────────────────────────
-    //
 
-    // auto-complete
+
+    //
+    // ─── AUTO COMPLETE ──────────────────────────────────────────────────────────────
+    //
     observableSource = (keyword: any): Observable<any[]> => {
         if (keyword) {
             this.loading = true;
@@ -96,7 +93,7 @@ export class TraCuuBenhComponent implements OnInit {
         const html = `<span style="display:block">${data.Name}</span>`;
         return this._sanitizer.bypassSecurityTrustHtml(html);
     }
-
+    // ────────────────────────────────────────────────────────────────────────────────
     // clear options
     onClearAll() {
         this.dsBenh = [];
@@ -109,16 +106,17 @@ export class TraCuuBenhComponent implements OnInit {
         this.onClearAll();
     }
 
-    // search benh
+    //
+    // ─── SEARCH BENH ────────────────────────────────────────────────────────────────
+    //
     onSearchBenh(keyword) {
-        console.log(keyword);
         if (keyword) {
             this.loading = true;
             // call api tìm kiếm bệnh
             this.benhService.SearchBenh(keyword).subscribe(data => {
-                console.log(data);
                 if (data.length === 1 || data[0]._id === keyword._id) {
-                    this.onAddBenh(data[0]);
+                    console.log(data[0]);
+                    this.onShowBenh(data[0]);
                     this.loading = false;
                     this.searchKey.patchValue('');
                     this.dsBenh = data;
@@ -135,14 +133,14 @@ export class TraCuuBenhComponent implements OnInit {
                             console.log(tc);
                             this.searchKey.patchValue('');
                             this.dsBenh.splice(this.dsBenh.indexOf(tc), 1);
-                            this.onAddBenh(tc);
+                            this.onShowBenh(tc);
                         }
                     });
                 }
             });
         } else {
             // load ds benh
-            this.benhService.DsBenh(50).subscribe(data => {
+            this.benhService.DsBenh(this.soBenhDaLoad).subscribe(data => {
                 this.dsBenh = data.DsBenh;
                 this.dsBenhCount = data.TongSoLuong;
             });
@@ -151,91 +149,23 @@ export class TraCuuBenhComponent implements OnInit {
     // ────────────────────────────────────────────────────────────────────────────────
 
     //
-    // ─── HISTORY OF FINDING BENH ────────────────────────────────────────────────────
+    // ─── SHOW CHI TIET ──────────────────────────────────────────────────────────────
     //
 
-    // add Benh to List of selected Benh
-    onAddBenh(benh: Benh) {
-        const i = this.dsBenh.indexOf(benh);
-        this.dsBenh.splice(i, 1);
-        this.dsBenhCount--;
-        this.dsBenhSelected = [...this.dsBenhSelected, benh];
-        const flags = new Set();
-        this.dsBenhSelected = this.dsBenhSelected.filter(entry => {
-            if (flags.has(entry._id)) {
-                return false;
-            }
-            flags.add(entry._id);
-            return true;
-        });
-        // this.onTimBenh();
-    }
-
-    // remove trieu chung from List of selected trieu chung
-    onRemoveBenh(benh: Benh) {
-        const i = this.dsBenhSelected.indexOf(benh);
-        this.dsBenhSelected.splice(i, 1);
-        this.dsBenhCount++;
-        this.dsBenh = [...this.dsBenh, benh];
-        // this.onTimBenh();
-    }
-    // ────────────────────────────────────────────────────────────────────────────────
-
-    // buildBenh() {
-    //     let icds = [];
-    //     this.dsBenhSelected.forEach((icd, i) => {
-    //         icds = [...icds, icd._id];
-    //     });
-    //     return icds;
-    // }
-
-    // onTimBenh() {
-    //     if (this.dsBenhSelected.length === 0) {
-    //         this.dsBenhGoiY = [];
-    //         return;
-    //     }
-
-    //     this.loading_dsBenhGoiY = true;
-    //     this.benhService.BenhFromTrieuChung(this.buildTrieuChung()).subscribe(
-    //         data => {
-    //             this.dsBenhGoiY = data;
-    //             this.dsBenhGoiY.forEach(b => {
-    //                 b.Score = 0;
-    //                 this.dsBenhSelected.forEach(tr => {
-    //                     if (JSON.stringify(b.dsBenh.Value).indexOf(tr._id) !== -1) {
-    //                         b.Score += 1;
-    //                     }
-    //                 });
-    //                 b.Score = (b.Score / b.dsBenh.Value.length) * 90;
-    //                 this.loading_dsBenhGoiY = false;
-    //             });
-
-    //             this.dsBenhGoiY = this.dsBenhGoiY.sort((obj1, obj2) => {
-    //                 if (obj1.Score < obj2.Score) {
-    //                     return 1;
-    //                 }
-    //                 if (obj1.Score > obj2.Score) {
-    //                     return -1;
-    //                 }
-    //                 return 0;
-    //             });
-    //             // console.log(this.dsBenhGoiY);
-
-    //         },
-    //         error => {
-    //             // console.log(error);
-    //             this.loading_dsBenhGoiY = false;
-    //             this.dsBenhGoiY = [];
-    //         }
-    //     );
-    // }
     onShowBenh(benh: Benh) {
         this.benh = benh;
     }
-    // onScroll(e) {
-    //     const tracker = e.target;
-    //     console.log(window.scrollY, tracker.querySelector('ul').getBoundingClientRect().top); // querySelector('ul')
 
-    // }
+    //
+    // ─── LOAD MORE BENH ─────────────────────────────────────────────────────────────
+    //
 
+    loadMore() {
+        this.soBenhDaLoad += 50;
+        // load ds benh
+        this.benhService.DsBenh(this.soBenhDaLoad).subscribe(data => {
+            this.dsBenh = data.DsBenh;
+            this.dsBenhCount = data.TongSoLuong;
+        });
+    }
 }

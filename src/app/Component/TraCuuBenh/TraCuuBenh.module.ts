@@ -12,8 +12,6 @@ import { ShareModule } from '../../Share/Share.module';
 
 // components
 import { TraCuuBenhComponent } from './TraCuuBenh.component';
-import { DanhSachComponent } from './DanhSach/DanhSach.component';
-import { ChiTietComponent } from './ChiTiet/ChiTiet.component';
 
 // services
 import { BenhService } from '../../Services/Benh.service';
@@ -40,8 +38,6 @@ const Routing: ModuleWithProviders = RouterModule.forChild(routing);
     // declare components
     declarations: [
         TraCuuBenhComponent,
-        DanhSachComponent,
-        ChiTietComponent
     ],
     // declare services
     providers: [
