@@ -36,7 +36,6 @@ import { BenhService } from '../../Services/Benh.service';
     ]
 })
 export class TraCuuBenhComponent implements OnInit {
-
     dsBenh: Benh[] = [];
     soBenhDaLoad = 0;
     dsBenhCount = 0;
