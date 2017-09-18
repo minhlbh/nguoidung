@@ -8,7 +8,7 @@ import { Benh, TrieuChung } from '../Share/Model';
 import { PageScrollConfig } from 'ng2-page-scroll';
 import StringHelper from '../Helper/String';
 import { Observable } from 'rxjs/Observable';
-import * as CryptoJS from 'crypto-js';
+// import * as CryptoJS from 'crypto-js';
 
 @Component({
     selector: 'app-chandoan',
@@ -26,10 +26,10 @@ import * as CryptoJS from 'crypto-js';
         ]),
         trigger('new', [
             transition(':enter', [   // :enter is alias to 'void => *'
-                style({ opacity: 0}),
-                animate(50, style({ opacity: 1  })),
+                style({ opacity: 0 }),
+                animate(50, style({ opacity: 1 })),
                 group([
-                    animate(50, style({ opacity: 1 , backgroundColor: '#cfd8dc' })),
+                    animate(50, style({ opacity: 1, backgroundColor: '#cfd8dc' })),
                     animate('.5s .5s ease', style({ backgroundColor: '#cfd8dc' })),
                     // animate(500, style({ backgroundColor: 'transparent' }))
                 ])
@@ -70,6 +70,7 @@ export class ChanDoanComponent implements OnInit {
         };
     }
 
+    // auto-complete
     observableSource = (keyword: any): Observable<any[]> => {
 
         const url = `http://api.truongkhoa.com/api/CSDLYT/SearchTrieuChung?term=${keyword}`;
@@ -87,6 +88,7 @@ export class ChanDoanComponent implements OnInit {
         }
     }
 
+    // set html elements for autocomplete list
     autocompleListFormatter = (data: any): SafeHtml => {
         const html = `<span style="display:block">${data.Name}</span>`;
         return this._sanitizer.bypassSecurityTrustHtml(html);
@@ -94,17 +96,17 @@ export class ChanDoanComponent implements OnInit {
 
 
     ngOnInit() {
-        const ob = { 'a': 'b' };
-        // Encrypt the Passwort with Base64
-        const password = 'HackersSeeIT';
-        const iv = CryptoJS.enc.Base64.parse('#base64IV#');
-        const encrypted = CryptoJS.AES.encrypt(JSON.stringify(ob), password);
-        const v = encrypted.toString();
-        console.log(v);
-        console.log(CryptoJS.AES.decrypt(v, password).toString(CryptoJS.enc.Utf8));
+        // const ob = { 'a': 'b' };
+        // // Encrypt the Passwort with Base64
+        // const password = 'HackersSeeIT';
+        // const iv = CryptoJS.enc.Base64.parse('#base64IV#');
+        // const encrypted = CryptoJS.AES.encrypt(JSON.stringify(ob), password);
+        // const v = encrypted.toString();
+        // console.log(v);
+        // console.log(CryptoJS.AES.decrypt(v, password).toString(CryptoJS.enc.Utf8));
 
     }
-
+    // clear options
     onClearAll() {
         this.dsTrieuChung = [];
         this.dsTrieuChungCount = 0;
@@ -113,17 +115,17 @@ export class ChanDoanComponent implements OnInit {
         this.searchKey.patchValue('');
         this.onClearAll();
     }
+
+    // search trieu chung
     onSearchTrieuChung(keyword) {
-        console.log(keyword);
         if (keyword) {
             this.loading_dsTrieuChung = true;
+            // call api for finding trieu chung
             this.trieuChungService.DSTrieuChung(keyword).subscribe(data => {
-                // console.log(data);
                 if (data.length === 1 || data[0]._id === keyword._id) {
                     this.onAddTrieuChung(data[0]);
                     this.loading_dsTrieuChung = false;
                     this.searchKey.patchValue('');
-
                     this.dsTrieuChung = data;
                     this.dsTrieuChung.splice(0, 1);
 
@@ -150,6 +152,7 @@ export class ChanDoanComponent implements OnInit {
 
     }
 
+    // add trieu chung to List of selected trieu chung
     onAddTrieuChung(trieuChung: TrieuChung) {
         const i = this.dsTrieuChung.indexOf(trieuChung);
         this.dsTrieuChung.splice(i, 1);
@@ -165,6 +168,7 @@ export class ChanDoanComponent implements OnInit {
         this.onTimBenh();
     }
 
+    // remove trieu chung from List of selected trieu chung
     onRemoveTrieuChung(trieuChung: TrieuChung) {
         const i = this.dsTrieuChungSelected.indexOf(trieuChung);
         this.dsTrieuChungSelected.splice(i, 1);
@@ -179,7 +183,9 @@ export class ChanDoanComponent implements OnInit {
         });
         return icds;
     }
-
+    //
+    // ─── FIND BENH FROM TRIEU CHUNG ─────────────────────────────────────────────────
+    //
     onTimBenh() {
         // this.buildTrieuChung
         if (this.dsTrieuChungSelected.length === 0) {
@@ -221,6 +227,8 @@ export class ChanDoanComponent implements OnInit {
             }
         );
     }
+    // ────────────────────────────────────────────────────────────────────────────────
+
     onShowBenh(benh: Benh) {
         this.benh = benh;
     }
