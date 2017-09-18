@@ -47,6 +47,9 @@
     width: 0px;
     background: transparent; /* make scrollbar transparent */
 }
+.search .form-control .form-control-lg {
+
+}
 
 .content .col-content.last {
     /* min-height: 140px; */
@@ -155,6 +158,14 @@
 /* end Element in list */
 /* end Element in list */
 /* end Element in list */
+.row.justify-content-end h2 {
+    position: absolute;
+    left: 175px;
+    top: 55px;
+    color: grey;
+    font-style: bold;
+    font-size: 25px;
+}
 
 @media only screen and (max-width: 768px) {
     .search_container {
