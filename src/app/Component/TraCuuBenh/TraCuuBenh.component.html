@@ -23,8 +23,8 @@
         <div class="search_container col-md-8 col-sm-12">
             <div class="search_field">
                 <img class="icon" src="assets/icons/search-icon.svg">
-                <img [@fadeInOut] *ngIf="searchKey.value && !loading_autocomplate" class="icon-end" src="assets/icons/cancel.svg" (click)="onClearSearch()">
-                <svg [@fadeInOut] *ngIf="loading_autocomplate" class="spinner icon-end" width="10px" height="10px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <img [@fadeInOut] *ngIf="searchKey.value && !loading" class="icon-end" src="assets/icons/cancel.svg" (click)="onClearSearch()">
+                <svg [@fadeInOut] *ngIf="loading" class="spinner icon-end" width="10px" height="10px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
                     <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
                 </svg>
 
@@ -44,30 +44,25 @@
                 Danh sách bệnh <span class="badge badge-danger">{{dsBenhCount}}</span>
             </div>
             <perfect-scrollbar class="col-content">
-                <div [@fadeInOut] *ngIf="loading_dsBenh" class="loading_ds">
+                <div [@fadeInOut] *ngIf="loading" class="loading_ds">
                     <svg class="spinner" width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
                         <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
                     </svg>
                 </div>
-                <ul *ngIf="dsBenh.length > 0 && !loading_dsBenh; else tcEmpty">
+                <ul *ngIf="dsBenh.length > 0 && !loading; else tcEmpty">
                     <li *ngFor="let benh of dsBenh">
                         <a style="cursor: pointer;" (click)="onShowBenh(benh)">
                             <span class="title" pageScroll [pageScrollDuration]="500">{{benh.Name}}</span>
                         </a>
                     </li>
                     <li>
-<<<<<<< HEAD
                         <a style="cursor: pointer; color: blue" (click)="loadMore()">
                             <span class="title">Xem thêm</span>
-=======
-                        <a style="cursor: pointer;" (click)="loadMore()">
-                            <span class="load-more">Xem thêm</span>
->>>>>>> 8f8237f7b7628027a7647dbc79530d957b09c195
                         </a>
                     </li>
                 </ul>
                 <ng-template #tcEmpty>
-                    <div class="empty" *ngIf="!loading_dsBenh">
+                    <div class="empty" *ngIf="!loading">
                         Tìm kiếm bệnh bằng cách gõ từ khoá vào ô tìm bệnh
                     </div>
                 </ng-template>

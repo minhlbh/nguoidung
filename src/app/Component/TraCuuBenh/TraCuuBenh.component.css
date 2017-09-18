@@ -146,13 +146,8 @@
 .col-content ul {
     height: 100%;
     overflow: auto;
-<<<<<<< HEAD
     padding:0;
     margin: 0 -5px;
-=======
-    padding: 0;
-    margin: 0 25px;
->>>>>>> 8f8237f7b7628027a7647dbc79530d957b09c195
 }
 
 .col-content ul li {
