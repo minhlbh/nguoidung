@@ -23,7 +23,7 @@
         <div class="search_container col-md-8 col-sm-12">
             <div class="search_field">
                 <img class="icon" src="assets/icons/search-icon.svg">
-                <img [@fadeInOut] *ngIf="searchKey.value && !loading" class="icon-end" src="assets/icons/cancel.svg" (click)="onClearSearch()">
+                <img [@fadeInOut] *ngIf="searchKey.value && !loading" class="icon-end" src="assets/icons/cancel.svg">
                 <svg [@fadeInOut] *ngIf="loading" class="spinner icon-end" width="10px" height="10px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
                     <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
                 </svg>

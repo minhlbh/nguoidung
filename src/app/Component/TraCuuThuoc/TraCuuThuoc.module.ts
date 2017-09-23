@@ -13,41 +13,27 @@ import { ShareModule } from '../../Share/Share.module';
 
 
 //
-// ─── COMPONENTS ─────────────────────────────────────────────────────────────────
+// ─── COMPONENT ──────────────────────────────────────────────────────────────────
 //
-import { TraCuuBenhComponent } from './TraCuuBenh.component';
+import { TraCuuThuocComponent } from './TraCuuThuoc.component';
 
 //
 // ─── SERVICES ───────────────────────────────────────────────────────────────────
 //
-import { BenhService } from '../../Services/Benh.service';
-
-// Định nghĩa router riêng cho module này
-const routing: Routes = [
-    { path: '', component: TraCuuBenhComponent }
-];
-const Routing: ModuleWithProviders = RouterModule.forChild(routing);
+import { ThuocService } from '../../Services/Thuoc.service';
 
 @NgModule({
     // import modules
     imports: [
-        CommonModule,
-        NguiAutoCompleteModule,
-        NguiStickyModule,
-        Ng2PageScrollModule,
-        StickyModule,
-        ShareModule,
-        FormsModule,
-        ReactiveFormsModule,
-        Routing
+        CommonModule
     ],
     // declare components
     declarations: [
-        TraCuuBenhComponent,
+        TraCuuThuocComponent
     ],
     // declare services
     providers: [
-        BenhService
+        ThuocService
     ]
 })
-export class TraCuuBenhModule { }
+export class TraCuuThuocModule { }
